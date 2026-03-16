@@ -4,85 +4,169 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>CV — Behou Blaise</title>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Rajdhani:wght@400;600;700&display=swap" rel="stylesheet">
+<meta name="robots" content="noindex,nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,700&family=Rajdhani:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
-*{box-sizing:border-box;margin:0;padding:0}
-
-/* Bloquer impression */
-@media print{
-  body{display:none !important}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#13121f;--bg2:#1c1a2e;
+  --gold:#c9a84c;--gold2:#e8c96a;
+  --white:#f0ece4;--muted:#948f8a;
+  --border:rgba(201,168,76,.22);--border2:rgba(201,168,76,.45);
 }
-
+@media print{body{display:none!important}}
+html{scroll-behavior:smooth}
 body{
-  background:#13121f;color:#f0ece4;
+  background:var(--bg);color:var(--white);
   font-family:'Rajdhani',sans-serif;
-  min-height:100vh;
-  user-select:none;
-  -webkit-user-select:none;
+  min-height:100vh;overflow-x:hidden;
+  user-select:none;-webkit-user-select:none;
 }
 
-/* NAVBAR */
+/* ── TOPBAR ── */
 .topbar{
   position:sticky;top:0;z-index:100;
   display:flex;justify-content:space-between;align-items:center;
-  padding:.9rem 2rem;
+  padding:.9rem 2.5rem;
   background:rgba(19,18,31,.97);
   backdrop-filter:blur(16px);
-  border-bottom:1px solid rgba(201,168,76,.22);
+  border-bottom:1px solid var(--border);
 }
 .topbar-logo{
   font-family:'Playfair Display',serif;
-  font-size:1.1rem;font-weight:700;
-  color:#f0ece4;text-decoration:none;
+  font-size:1.15rem;font-weight:700;
+  color:var(--white);text-decoration:none;
+  letter-spacing:.02em;
 }
-.topbar-logo span{color:#c9a84c}
+.topbar-logo span{color:var(--gold)}
 .back-btn{
-  font-size:.75rem;font-weight:700;letter-spacing:.14em;
-  text-transform:uppercase;color:#13121f;
-  background:#c9a84c;padding:.5rem 1.25rem;
-  text-decoration:none;transition:background .3s;
+  font-size:.72rem;font-weight:700;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--bg);
+  background:var(--gold);padding:.5rem 1.25rem;
+  text-decoration:none;transition:background .25s,transform .2s;
+  white-space:nowrap;
 }
-.back-btn:hover{background:#e8c96a}
+.back-btn:hover{background:var(--gold2);transform:translateY(-1px)}
 
-/* VIEWER */
-.viewer-wrap{
-  max-width:860px;margin:2rem auto;
-  padding:0 1.5rem 3rem;
+/* ── HERO BAND ── */
+.hero-band{
+  text-align:center;padding:2.5rem 1.5rem 2rem;
+  border-bottom:1px solid var(--border);
+  position:relative;overflow:hidden;
+  animation:bandIn .6s .1s both;
 }
-.viewer-info{
-  text-align:center;margin-bottom:1.5rem;
-  font-size:.78rem;font-weight:600;letter-spacing:.1em;
-  text-transform:uppercase;color:rgba(148,143,138,.6);
+.hero-band .geo{
+  position:absolute;inset:0;pointer-events:none;opacity:.05;
+}
+.hero-band .geo circle{fill:none;stroke:var(--gold)}
+.band-eyebrow{
+  font-size:.66rem;font-weight:700;letter-spacing:.24em;
+  text-transform:uppercase;color:var(--gold);
+  display:flex;align-items:center;gap:.65rem;
+  justify-content:center;margin-bottom:.65rem;
+}
+.band-eyebrow::before,.band-eyebrow::after{content:'';width:20px;height:1px;background:var(--gold)}
+.band-title{
+  font-family:'Playfair Display',serif;font-style:italic;
+  font-size:clamp(1.6rem,4vw,2.4rem);font-weight:700;
+  color:var(--white);line-height:1.1;
+}
+.band-title span{color:var(--gold)}
+.band-sub{
+  font-size:.7rem;font-weight:600;letter-spacing:.14em;
+  text-transform:uppercase;color:rgba(148,143,138,.45);
+  margin-top:.6rem;
+}
+
+/* ── VIEWER ── */
+.viewer-wrap{
+  max-width:880px;margin:0 auto;
+  padding:1.75rem 1.75rem 3.5rem;
+}
+.viewer-toolbar{
+  display:flex;justify-content:space-between;align-items:center;
+  margin-bottom:.9rem;
+}
+.toolbar-label{
+  font-size:.66rem;font-weight:700;letter-spacing:.16em;
+  text-transform:uppercase;color:rgba(148,143,138,.45);
+}
+.lock-badge{
+  display:flex;align-items:center;gap:5px;
+  font-size:.66rem;font-weight:600;letter-spacing:.12em;
+  text-transform:uppercase;color:rgba(148,143,138,.38);
+}
+.lock-badge svg{width:13px;height:13px;flex-shrink:0}
+
+/* Cadre avec coins décoratifs */
+.frame-outer{position:relative}
+.corner{position:absolute;width:12px;height:12px}
+.corner-tl{top:-1px;left:-1px;border-top:2px solid var(--gold);border-left:2px solid var(--gold)}
+.corner-tr{top:-1px;right:-1px;border-top:2px solid var(--gold);border-right:2px solid var(--gold)}
+.corner-bl{bottom:-1px;left:-1px;border-bottom:2px solid var(--gold);border-left:2px solid var(--gold)}
+.corner-br{bottom:-1px;right:-1px;border-bottom:2px solid var(--gold);border-right:2px solid var(--gold)}
+
+.pdf-overlay{position:relative}
+.pdf-overlay::after{
+  content:'';position:absolute;inset:0;z-index:1;cursor:default;
 }
 .pdf-frame{
-  width:100%;height:85vh;
-  border:1px solid rgba(201,168,76,.22);
-  border-radius:4px;
-  display:block;
+  width:100%;height:82vh;min-height:420px;
+  border:1px solid var(--border);display:block;
+  background:var(--bg2);
+  animation:frameIn .7s .3s both;
 }
 
-/* Overlay pour bloquer clic droit sur le PDF */
-.pdf-overlay{
-  position:relative;
+/* ── PIED DE VIEWER ── */
+.viewer-footer{
+  display:flex;justify-content:center;align-items:center;
+  gap:1.5rem;flex-wrap:wrap;
+  padding:1.25rem 0 0;
+  border-top:1px solid var(--border);
+  margin-top:1.5rem;
 }
-.pdf-overlay::after{
-  content:'';
-  position:absolute;
-  inset:0;
-  z-index:1;
-  cursor:not-allowed;
+.vf-item{
+  display:flex;align-items:center;gap:.45rem;
+  font-size:.62rem;font-weight:600;letter-spacing:.12em;
+  text-transform:uppercase;color:rgba(148,143,138,.38);
+}
+.vf-dot{width:3px;height:3px;border-radius:50%;background:rgba(201,168,76,.35);flex-shrink:0}
+.vf-contact{
+  font-size:.62rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--gold);text-decoration:none;
+  border-bottom:1px solid rgba(201,168,76,.25);padding-bottom:1px;
+  transition:border-color .2s;
+}
+.vf-contact:hover{border-color:var(--gold)}
+
+/* ── PAGE FOOTER ── */
+footer{
+  border-top:1px solid var(--border);
+  padding:1.5rem 2.5rem;
+  display:flex;justify-content:space-between;align-items:center;
+  flex-wrap:wrap;gap:.5rem;
+}
+.foot-logo{
+  font-family:'Playfair Display',serif;
+  font-size:.95rem;color:rgba(240,236,228,.3);
+}
+.foot-copy{
+  font-size:.62rem;font-weight:600;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--muted);
 }
 
-/* Message anti-impression */
-.no-print-msg{
-  display:none;
-  text-align:center;padding:4rem 2rem;
-  font-size:1.2rem;color:#c9a84c;
-}
+/* ── KEYFRAMES ── */
+@keyframes bandIn{from{opacity:0;transform:translateY(-12px)}to{opacity:1;transform:none}}
+@keyframes frameIn{from{opacity:0}to{opacity:1}}
 
+/* ── RESPONSIVE ── */
 @media(max-width:600px){
-  .pdf-frame{height:70vh}
   .topbar{padding:.8rem 1rem}
+  .pdf-frame{height:70vh}
+  .hero-band{padding:2rem 1rem 1.5rem}
+  .viewer-wrap{padding:1.25rem 1rem 2.5rem}
+  footer{flex-direction:column;text-align:center;padding:1.25rem 1rem}
 }
 </style>
 </head>
@@ -94,44 +178,68 @@ body{
   <a href="/" class="back-btn">← Retour au portfolio</a>
 </div>
 
+<!-- HERO BAND -->
+<div class="hero-band">
+  <svg class="geo" viewBox="0 0 900 160" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <circle cx="820" cy="20" r="120" stroke-width=".7"/>
+    <circle cx="820" cy="20" r="70" stroke-width=".4"/>
+    <circle cx="80" cy="140" r="90" stroke-width=".5"/>
+  </svg>
+  <div class="band-eyebrow">Portfolio · Développeur Web &amp; Mobile</div>
+  <h1 class="band-title">Behou Yapo <span>Blaise</span></h1>
+  <p class="band-sub">Curriculum Vitæ · Consultation uniquement</p>
+</div>
+
 <!-- VIEWER -->
 <div class="viewer-wrap">
-  <p class="viewer-info">👁 Consultation uniquement — CV de Behou Blaise</p>
-  <div class="pdf-overlay">
-    <iframe
-      class="pdf-frame"
-      src="cv-behou-blaise.pdf#toolbar=0&navpanes=0&scrollbar=1&view=FitH"
-      type="application/pdf"
-      title="CV Behou Blaise">
-    </iframe>
+  <div class="viewer-toolbar">
+    <span class="toolbar-label">CV · 2024–2025</span>
+    <span class="lock-badge">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <rect x="5" y="11" width="14" height="10" rx="2"/>
+        <path d="M8 11V7a4 4 0 0 1 8 0v4"/>
+      </svg>
+      Consultation uniquement
+    </span>
+  </div>
+
+  <div class="frame-outer">
+    <div class="corner corner-tl"></div>
+    <div class="corner corner-tr"></div>
+    <div class="corner corner-bl"></div>
+    <div class="corner corner-br"></div>
+    <div class="pdf-overlay">
+      <iframe
+        class="pdf-frame"
+        src="cv-behou-blaise.pdf#toolbar=0&navpanes=0&scrollbar=1&view=FitH"
+        type="application/pdf"
+        title="CV Behou Yapo Blaise">
+      </iframe>
+    </div>
+  </div>
+
+  <div class="viewer-footer">
+    <span class="vf-item"><span class="vf-dot"></span>HTML5 · CSS3 · JavaScript</span>
+    <span class="vf-item"><span class="vf-dot"></span>PHP · MySQL · Bootstrap</span>
+    <span class="vf-item"><span class="vf-dot"></span>Figma · UI/UX · Git</span>
+    <a href="mailto:behouyapol5@gmail.com" class="vf-contact">behouyapol5@gmail.com</a>
   </div>
 </div>
 
+<footer>
+  <div class="foot-logo">Behou Blaise</div>
+  <div class="foot-copy">© 2026 — Tous droits réservés</div>
+</footer>
+
 <script>
-// Bloquer clic droit
-document.addEventListener('contextmenu', e => e.preventDefault());
-
-// Bloquer Ctrl+P / Cmd+P (impression)
-document.addEventListener('keydown', e => {
-  if((e.ctrlKey || e.metaKey) && e.key === 'p'){
-    e.preventDefault();
-    alert('⚠️ L\'impression de ce CV n\'est pas autorisée.');
-  }
-  // Bloquer Ctrl+S (sauvegarde)
-  if((e.ctrlKey || e.metaKey) && e.key === 's'){
-    e.preventDefault();
-  }
-  // Bloquer Ctrl+Shift+S
-  if((e.ctrlKey || e.metaKey) && e.shiftKey && e.key === 's'){
-    e.preventDefault();
-  }
+document.addEventListener('contextmenu',e=>e.preventDefault());
+document.addEventListener('keydown',e=>{
+  const mod=e.ctrlKey||e.metaKey;
+  if(mod&&e.key==='p'){e.preventDefault();alert('L\'impression de ce CV n\'est pas autorisée.');}
+  if(mod&&(e.key==='s'||e.key==='S')){e.preventDefault();}
+  if(mod&&e.shiftKey&&e.key==='s'){e.preventDefault();}
 });
-
-// Détecter tentative d'impression via window.onbeforeprint
-window.onbeforeprint = function(){
-  document.body.style.display = 'none';
-  setTimeout(()=>{ document.body.style.display = ''; }, 100);
-};
+window.onbeforeprint=()=>{document.body.style.display='none';setTimeout(()=>{document.body.style.display='';},100)};
 </script>
 </body>
 </html>
