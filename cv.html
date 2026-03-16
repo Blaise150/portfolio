@@ -6,16 +6,24 @@
 <title>CV — Behou Blaise</title>
 <meta name="robots" content="noindex,nofollow">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,700&family=Rajdhani:wght@400;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,700&family=Rajdhani:wght@400;600;700&family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
-  --bg:#13121f;--bg2:#1c1a2e;
-  --gold:#c9a84c;--gold2:#e8c96a;
-  --white:#f0ece4;--muted:#948f8a;
-  --border:rgba(201,168,76,.22);--border2:rgba(201,168,76,.45);
+  --bg:#13121f;--gold:#c9a84c;--gold2:#e8c96a;
+  --white:#f0ece4;--muted:#948f8a;--border:rgba(201,168,76,.22);
+  --ink:#0f0e0c;--paper:#f5f0e8;--accent:#c84b2f;
+  --cv-muted:#7a7469;--rule:#d4cfc6;
+  --sidebar-bg:#1a1714;--sidebar-text:#ede8df;--sidebar-muted:#8a8278;
+  --tag-bg:#e8e2d8;
 }
-@media print{body{display:none!important}}
+@media print{
+  .topbar,.hero-band,footer,.viewer-toolbar,.viewer-footer{display:none!important}
+  body{background:white!important;padding:0!important}
+  .viewer-wrap{padding:0!important;max-width:none!important}
+  .cv-shell{padding:0!important}
+  .cv-page{box-shadow:none!important}
+}
 html{scroll-behavior:smooth}
 body{
   background:var(--bg);color:var(--white);
@@ -34,10 +42,8 @@ body{
   border-bottom:1px solid var(--border);
 }
 .topbar-logo{
-  font-family:'Playfair Display',serif;
-  font-size:1.15rem;font-weight:700;
+  font-family:'Playfair Display',serif;font-size:1.15rem;font-weight:700;
   color:var(--white);text-decoration:none;
-  letter-spacing:.02em;
 }
 .topbar-logo span{color:var(--gold)}
 .back-btn{
@@ -45,127 +51,201 @@ body{
   text-transform:uppercase;color:var(--bg);
   background:var(--gold);padding:.5rem 1.25rem;
   text-decoration:none;transition:background .25s,transform .2s;
-  white-space:nowrap;
 }
 .back-btn:hover{background:var(--gold2);transform:translateY(-1px)}
 
 /* ── HERO BAND ── */
 .hero-band{
-  text-align:center;padding:2.5rem 1.5rem 2rem;
+  text-align:center;padding:2.25rem 1.5rem 1.75rem;
   border-bottom:1px solid var(--border);
   position:relative;overflow:hidden;
-  animation:bandIn .6s .1s both;
 }
-.hero-band .geo{
-  position:absolute;inset:0;pointer-events:none;opacity:.05;
-}
+.hero-band .geo{position:absolute;inset:0;pointer-events:none;opacity:.05}
 .hero-band .geo circle{fill:none;stroke:var(--gold)}
 .band-eyebrow{
-  font-size:.66rem;font-weight:700;letter-spacing:.24em;
+  font-size:.64rem;font-weight:700;letter-spacing:.24em;
   text-transform:uppercase;color:var(--gold);
-  display:flex;align-items:center;gap:.65rem;
-  justify-content:center;margin-bottom:.65rem;
+  display:flex;align-items:center;gap:.65rem;justify-content:center;margin-bottom:.6rem;
 }
 .band-eyebrow::before,.band-eyebrow::after{content:'';width:20px;height:1px;background:var(--gold)}
 .band-title{
   font-family:'Playfair Display',serif;font-style:italic;
-  font-size:clamp(1.6rem,4vw,2.4rem);font-weight:700;
+  font-size:clamp(1.5rem,4vw,2.2rem);font-weight:700;
   color:var(--white);line-height:1.1;
 }
 .band-title span{color:var(--gold)}
 .band-sub{
-  font-size:.7rem;font-weight:600;letter-spacing:.14em;
-  text-transform:uppercase;color:rgba(148,143,138,.45);
-  margin-top:.6rem;
+  font-size:.68rem;font-weight:600;letter-spacing:.14em;
+  text-transform:uppercase;color:rgba(148,143,138,.42);margin-top:.55rem;
 }
 
-/* ── VIEWER ── */
-.viewer-wrap{
-  max-width:880px;margin:0 auto;
-  padding:1.75rem 1.75rem 3.5rem;
-}
+/* ── VIEWER SHELL ── */
+.viewer-wrap{max-width:880px;margin:0 auto;padding:1.75rem 1.75rem 3.5rem}
 .viewer-toolbar{
-  display:flex;justify-content:space-between;align-items:center;
-  margin-bottom:.9rem;
+  display:flex;justify-content:space-between;align-items:center;margin-bottom:.9rem;
 }
-.toolbar-label{
-  font-size:.66rem;font-weight:700;letter-spacing:.16em;
-  text-transform:uppercase;color:rgba(148,143,138,.45);
-}
+.toolbar-label{font-size:.64rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:rgba(148,143,138,.42)}
 .lock-badge{
   display:flex;align-items:center;gap:5px;
-  font-size:.66rem;font-weight:600;letter-spacing:.12em;
-  text-transform:uppercase;color:rgba(148,143,138,.38);
+  font-size:.64rem;font-weight:600;letter-spacing:.12em;
+  text-transform:uppercase;color:rgba(148,143,138,.36);
 }
 .lock-badge svg{width:13px;height:13px;flex-shrink:0}
-
-/* Cadre avec coins décoratifs */
 .frame-outer{position:relative}
-.corner{position:absolute;width:12px;height:12px}
+.corner{position:absolute;width:12px;height:12px;z-index:2}
 .corner-tl{top:-1px;left:-1px;border-top:2px solid var(--gold);border-left:2px solid var(--gold)}
 .corner-tr{top:-1px;right:-1px;border-top:2px solid var(--gold);border-right:2px solid var(--gold)}
 .corner-bl{bottom:-1px;left:-1px;border-bottom:2px solid var(--gold);border-left:2px solid var(--gold)}
 .corner-br{bottom:-1px;right:-1px;border-bottom:2px solid var(--gold);border-right:2px solid var(--gold)}
 
-.pdf-overlay{position:relative}
-.pdf-overlay::after{
-  content:'';position:absolute;inset:0;z-index:1;cursor:default;
+/* ── CV INTÉGRÉ ── */
+.cv-shell{background:#e8e2d8;padding:24px 14px;border:1px solid var(--border)}
+.cv-page{
+  width:100%;max-width:794px;margin:0 auto;
+  background:var(--paper);
+  display:grid;grid-template-columns:220px 1fr;
+  min-height:1060px;
+  box-shadow:0 8px 48px rgba(0,0,0,.18),0 2px 8px rgba(0,0,0,.08);
+  position:relative;overflow:hidden;
+  font-family:'DM Sans',sans-serif;font-size:13px;color:var(--ink);
 }
-.pdf-frame{
-  width:100%;height:82vh;min-height:420px;
-  border:1px solid var(--border);display:block;
-  background:var(--bg2);
-  animation:frameIn .7s .3s both;
+.cv-corner-accent{
+  position:absolute;top:0;right:0;width:0;height:0;
+  border-left:48px solid transparent;border-top:48px solid var(--accent);opacity:.6;
 }
 
-/* ── PIED DE VIEWER ── */
+/* SIDEBAR */
+.cv-sidebar{
+  background:var(--sidebar-bg);color:var(--sidebar-text);
+  padding:40px 22px 36px;display:flex;flex-direction:column;
+}
+.photo-wrap{
+  width:110px;height:110px;border-radius:50%;overflow:hidden;
+  margin:0 auto 20px;
+  border:3px solid var(--accent);box-shadow:0 0 0 6px rgba(200,75,47,.14);
+  flex-shrink:0;
+}
+.photo-wrap img{width:100%;height:100%;object-fit:cover}
+.sidebar-name{
+  font-family:'DM Serif Display',serif;font-size:17px;line-height:1.2;
+  color:#fff;text-align:center;margin-bottom:4px;
+}
+.sidebar-name span{
+  display:block;font-size:11px;font-family:'DM Sans',sans-serif;font-weight:300;
+  color:var(--sidebar-muted);text-transform:uppercase;letter-spacing:.15em;margin-top:2px;
+}
+.cv-divider{
+  height:1px;
+  background:linear-gradient(to right,transparent,rgba(255,255,255,.1),transparent);
+  margin:18px 0;
+}
+.cv-s-section{margin-bottom:20px}
+.cv-s-label{
+  font-size:9px;font-weight:600;letter-spacing:.2em;
+  text-transform:uppercase;color:var(--accent);margin-bottom:9px;
+}
+.contact-item{
+  display:flex;align-items:flex-start;gap:7px;
+  margin-bottom:7px;color:var(--sidebar-muted);font-size:11px;line-height:1.4;
+}
+.contact-item .ic{width:15px;height:15px;flex-shrink:0;margin-top:1px;opacity:.55}
+.sb-wrap{margin-bottom:9px}
+.sb-label{display:flex;justify-content:space-between;font-size:10.5px;color:var(--sidebar-muted);margin-bottom:4px}
+.sb-track{height:3px;background:rgba(255,255,255,.07);border-radius:2px;overflow:hidden}
+.sb-fill{height:100%;background:linear-gradient(to right,var(--accent),#e07050);border-radius:2px}
+.tag-cloud{display:flex;flex-wrap:wrap;gap:5px}
+.cv-tag{
+  background:rgba(255,255,255,.07);color:var(--sidebar-muted);
+  font-size:10px;padding:3px 7px;border-radius:2px;
+  letter-spacing:.03em;border:1px solid rgba(255,255,255,.06);
+}
+
+/* MAIN */
+.cv-main{padding:44px 36px 36px 32px;display:flex;flex-direction:column}
+.job-title{
+  font-family:'DM Serif Display',serif;font-size:28px;
+  line-height:1.1;color:var(--ink);letter-spacing:-.02em;
+}
+.job-title em{color:var(--accent);font-style:italic}
+.t-rule{display:flex;align-items:center;gap:12px;margin:11px 0 13px}
+.t-rule .dot{width:6px;height:6px;background:var(--accent);border-radius:50%;flex-shrink:0}
+.t-rule .line{flex:1;height:1px;background:var(--rule)}
+.profile-text{
+  font-size:12px;line-height:1.72;color:#3a3630;
+  font-weight:300;font-style:italic;
+  border-left:2px solid var(--accent);padding-left:13px;
+  max-width:460px;margin-bottom:24px;
+}
+.cv-sec{margin-bottom:22px}
+.sec-hdr{display:flex;align-items:center;gap:10px;margin-bottom:13px}
+.sec-ttl{
+  font-size:9px;font-weight:600;letter-spacing:.22em;
+  text-transform:uppercase;color:var(--accent);flex-shrink:0;
+}
+.sec-line{flex:1;height:1px;background:var(--rule)}
+.exp-item{margin-bottom:16px;padding-left:13px;border-left:1px solid var(--rule);position:relative}
+.exp-item::before{
+  content:'';position:absolute;left:-3px;top:6px;
+  width:5px;height:5px;background:var(--accent);border-radius:50%;
+}
+.exp-role{font-size:12.5px;font-weight:600;color:var(--ink);line-height:1.3}
+.exp-co{font-size:11px;color:var(--accent);margin:2px 0;font-weight:500}
+.exp-meta{font-size:10px;color:var(--cv-muted);margin-bottom:6px;display:flex;gap:7px;align-items:center}
+.exp-meta .sep{opacity:.4}
+.exp-ul{list-style:none;display:flex;flex-direction:column;gap:3px}
+.exp-ul li{font-size:11px;color:#4a4540;line-height:1.5;padding-left:11px;position:relative}
+.exp-ul li::before{content:'→';position:absolute;left:0;color:var(--accent);font-size:9.5px;top:1px}
+.edu-item{
+  display:grid;grid-template-columns:1fr auto;gap:8px;
+  margin-bottom:11px;padding-bottom:11px;border-bottom:1px solid var(--rule);
+}
+.edu-item:last-child{border-bottom:none;margin-bottom:0}
+.edu-deg{font-size:12px;font-weight:600;color:var(--ink);line-height:1.3}
+.edu-sch{font-size:10.5px;color:var(--cv-muted);margin-top:2px}
+.edu-yr{font-size:10.5px;color:var(--accent);font-weight:500;white-space:nowrap;text-align:right}
+.comp-grid{display:grid;grid-template-columns:1fr 1fr;gap:9px 18px}
+.comp-g-title{font-size:9.5px;font-weight:600;color:var(--cv-muted);letter-spacing:.1em;text-transform:uppercase;margin-bottom:5px}
+.comp-tags{display:flex;flex-wrap:wrap;gap:4px}
+.comp-tag{font-size:10px;background:var(--tag-bg);color:#4a4540;padding:2px 6px;border-radius:2px;border:1px solid var(--rule)}
+
+/* ── PIED VIEWER ── */
 .viewer-footer{
   display:flex;justify-content:center;align-items:center;
   gap:1.5rem;flex-wrap:wrap;
-  padding:1.25rem 0 0;
-  border-top:1px solid var(--border);
-  margin-top:1.5rem;
+  padding:1.25rem 0 0;border-top:1px solid var(--border);margin-top:1.5rem;
 }
 .vf-item{
   display:flex;align-items:center;gap:.45rem;
   font-size:.62rem;font-weight:600;letter-spacing:.12em;
-  text-transform:uppercase;color:rgba(148,143,138,.38);
+  text-transform:uppercase;color:rgba(148,143,138,.36);
 }
 .vf-dot{width:3px;height:3px;border-radius:50%;background:rgba(201,168,76,.35);flex-shrink:0}
 .vf-contact{
   font-size:.62rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;
   color:var(--gold);text-decoration:none;
-  border-bottom:1px solid rgba(201,168,76,.25);padding-bottom:1px;
-  transition:border-color .2s;
+  border-bottom:1px solid rgba(201,168,76,.25);padding-bottom:1px;transition:border-color .2s;
 }
 .vf-contact:hover{border-color:var(--gold)}
 
-/* ── PAGE FOOTER ── */
+/* ── FOOTER ── */
 footer{
-  border-top:1px solid var(--border);
-  padding:1.5rem 2.5rem;
-  display:flex;justify-content:space-between;align-items:center;
-  flex-wrap:wrap;gap:.5rem;
+  border-top:1px solid var(--border);padding:1.5rem 2.5rem;
+  display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:.5rem;
 }
-.foot-logo{
-  font-family:'Playfair Display',serif;
-  font-size:.95rem;color:rgba(240,236,228,.3);
-}
-.foot-copy{
-  font-size:.62rem;font-weight:600;letter-spacing:.1em;
-  text-transform:uppercase;color:var(--muted);
-}
-
-/* ── KEYFRAMES ── */
-@keyframes bandIn{from{opacity:0;transform:translateY(-12px)}to{opacity:1;transform:none}}
-@keyframes frameIn{from{opacity:0}to{opacity:1}}
+.foot-logo{font-family:'Playfair Display',serif;font-size:.95rem;color:rgba(240,236,228,.3)}
+.foot-copy{font-size:.62rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.foot-back{font-size:.62rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);text-decoration:none;transition:color .3s}
+.foot-back:hover{color:var(--gold)}
 
 /* ── RESPONSIVE ── */
-@media(max-width:600px){
+@media(max-width:860px){.cv-page{grid-template-columns:185px 1fr}}
+@media(max-width:640px){
   .topbar{padding:.8rem 1rem}
-  .pdf-frame{height:70vh}
-  .hero-band{padding:2rem 1rem 1.5rem}
   .viewer-wrap{padding:1.25rem 1rem 2.5rem}
+  .cv-shell{padding:10px 4px}
+  .cv-page{grid-template-columns:1fr;min-height:auto}
+  .cv-sidebar{padding:28px 20px 20px}
+  .photo-wrap{width:88px;height:88px}
   footer{flex-direction:column;text-align:center;padding:1.25rem 1rem}
 }
 </style>
@@ -180,10 +260,10 @@ footer{
 
 <!-- HERO BAND -->
 <div class="hero-band">
-  <svg class="geo" viewBox="0 0 900 160" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+  <svg class="geo" viewBox="0 0 900 140" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
     <circle cx="820" cy="20" r="120" stroke-width=".7"/>
     <circle cx="820" cy="20" r="70" stroke-width=".4"/>
-    <circle cx="80" cy="140" r="90" stroke-width=".5"/>
+    <circle cx="80" cy="120" r="90" stroke-width=".5"/>
   </svg>
   <div class="band-eyebrow">Portfolio · Développeur Web &amp; Mobile</div>
   <h1 class="band-title">Behou Yapo <span>Blaise</span></h1>
@@ -208,13 +288,143 @@ footer{
     <div class="corner corner-tr"></div>
     <div class="corner corner-bl"></div>
     <div class="corner corner-br"></div>
-    <div class="pdf-overlay">
-      <iframe
-        class="pdf-frame"
-        src="cv-behou-blaise.pdf#toolbar=0&navpanes=0&scrollbar=1&view=FitH"
-        type="application/pdf"
-        title="CV Behou Yapo Blaise">
-      </iframe>
+
+    <div class="cv-shell">
+      <div class="cv-page">
+        <div class="cv-corner-accent"></div>
+
+        <!-- SIDEBAR -->
+        <aside class="cv-sidebar">
+          <div class="photo-wrap">
+            <img src="photo-blaise.jpg" alt="Behou Yapo Blaise"
+              onerror="this.style.display='none';this.parentNode.innerHTML='<svg viewBox=\'0 0 110 110\' style=\'width:100%;height:100%;background:#2a2520;display:block\'><circle cx=\'55\' cy=\'44\' r=\'22\' fill=\'#4a4540\'/><ellipse cx=\'55\' cy=\'95\' rx=\'34\' ry=\'26\' fill=\'#4a4540\'/><text x=\'55\' y=\'49\' text-anchor=\'middle\' font-size=\'22\' font-family=\'serif\' fill=\'#8a8278\'>BY</text></svg>'">
+          </div>
+
+          <div class="sidebar-name">BEHOU Yapo<br>Blaise<span>Développeur Web</span></div>
+
+          <div class="cv-divider"></div>
+
+          <div class="cv-s-section">
+            <div class="cv-s-label">Contact</div>
+            <div class="contact-item">
+              <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+              0698305435
+            </div>
+            <div class="contact-item">
+              <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+              behouyapol5@gmail.com
+            </div>
+            <div class="contact-item">
+              <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+              Permis B &amp; véhicule
+            </div>
+          </div>
+
+          <div class="cv-divider"></div>
+
+          <div class="cv-s-section">
+            <div class="cv-s-label">Maîtrise technique</div>
+            <div class="sb-wrap"><div class="sb-label"><span>HTML5 / CSS3</span></div><div class="sb-track"><div class="sb-fill" style="width:90%"></div></div></div>
+            <div class="sb-wrap"><div class="sb-label"><span>JavaScript / jQuery</span></div><div class="sb-track"><div class="sb-fill" style="width:75%"></div></div></div>
+            <div class="sb-wrap"><div class="sb-label"><span>PHP / MySQL</span></div><div class="sb-track"><div class="sb-fill" style="width:70%"></div></div></div>
+            <div class="sb-wrap"><div class="sb-label"><span>Bootstrap / Git</span></div><div class="sb-track"><div class="sb-fill" style="width:80%"></div></div></div>
+            <div class="sb-wrap"><div class="sb-label"><span>Figma / UI·UX</span></div><div class="sb-track"><div class="sb-fill" style="width:78%"></div></div></div>
+            <div class="sb-wrap"><div class="sb-label"><span>WordPress / Webador</span></div><div class="sb-track"><div class="sb-fill" style="width:85%"></div></div></div>
+          </div>
+
+          <div class="cv-divider"></div>
+
+          <div class="cv-s-section">
+            <div class="cv-s-label">Soft Skills</div>
+            <div class="tag-cloud">
+              <span class="cv-tag">Autonomie</span><span class="cv-tag">Rigueur</span>
+              <span class="cv-tag">Curiosité</span><span class="cv-tag">Adaptabilité</span>
+              <span class="cv-tag">Gestion de projet</span>
+              <span class="cv-tag">Travail en équipe</span>
+              <span class="cv-tag">Communication</span>
+            </div>
+          </div>
+
+          <div class="cv-divider"></div>
+
+          <div class="cv-s-section">
+            <div class="cv-s-label">Langues</div>
+            <div class="sb-wrap"><div class="sb-label"><span>Français</span><span style="font-size:9px;opacity:.5">Natif</span></div><div class="sb-track"><div class="sb-fill" style="width:100%"></div></div></div>
+            <div class="sb-wrap"><div class="sb-label"><span>Anglais</span><span style="font-size:9px;opacity:.5">Professionnel</span></div><div class="sb-track"><div class="sb-fill" style="width:60%"></div></div></div>
+          </div>
+        </aside>
+
+        <!-- MAIN CV -->
+        <main class="cv-main">
+          <div class="job-title">Développeur<br><em>Web &amp; Mobile</em></div>
+          <div class="t-rule"><div class="dot"></div><div class="line"></div></div>
+          <p class="profile-text">Diplômé Bac+2, issu d'une reconversion depuis un Master 2 en Sociologie. Double compétence technique et analytique : conception, développement et maintenance d'applications web, avec une forte orientation UX/UI et gestion de projet. Autonome, rigoureux et orienté résultats.</p>
+
+          <div class="cv-sec">
+            <div class="sec-hdr"><span class="sec-ttl">Expériences professionnelles</span><div class="sec-line"></div></div>
+            <div class="exp-item">
+              <div class="exp-role">Stagiaire – Création et Gestion de Site Web</div>
+              <div class="exp-co">KISI &amp; CO – Paris (Télétravail)</div>
+              <div class="exp-meta"><span>Avril 2024</span><span class="sep">–</span><span>Mai 2024</span></div>
+              <ul class="exp-ul">
+                <li>Analyse des besoins et définition des objectifs du site</li>
+                <li>Conception de l'architecture et maquettage sur Figma</li>
+                <li>Création du site via Webador, intégration de contenus</li>
+                <li>Optimisation SEO et gestion des accès administrateurs</li>
+              </ul>
+            </div>
+            <div class="exp-item">
+              <div class="exp-role">Développeur Web – Projets personnels &amp; Freelance</div>
+              <div class="exp-co">Auto-entrepreneur</div>
+              <div class="exp-meta"><span>2023</span><span class="sep">–</span><span>Présent</span></div>
+              <ul class="exp-ul">
+                <li>Développement de sites vitrines et d'applications web</li>
+                <li>Intégration HTML/CSS/JS responsive, optimisation performance</li>
+                <li>Gestion de bases de données MySQL, déploiement sur serveur Debian</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="cv-sec">
+            <div class="sec-hdr"><span class="sec-ttl">Compétences techniques</span><div class="sec-line"></div></div>
+            <div class="comp-grid">
+              <div>
+                <div class="comp-g-title">Développement Web</div>
+                <div class="comp-tags"><span class="comp-tag">HTML5</span><span class="comp-tag">CSS3</span><span class="comp-tag">JavaScript</span><span class="comp-tag">jQuery</span><span class="comp-tag">PHP</span><span class="comp-tag">MySQL</span><span class="comp-tag">Bootstrap</span><span class="comp-tag">Git / GitHub</span></div>
+              </div>
+              <div>
+                <div class="comp-g-title">Design &amp; UX/UI</div>
+                <div class="comp-tags"><span class="comp-tag">Figma</span><span class="comp-tag">Conception UI/UX</span><span class="comp-tag">Maquettage</span><span class="comp-tag">Prototypage</span></div>
+              </div>
+              <div>
+                <div class="comp-g-title">CMS &amp; Outils</div>
+                <div class="comp-tags"><span class="comp-tag">WordPress</span><span class="comp-tag">Webador</span><span class="comp-tag">Airtable</span></div>
+              </div>
+              <div>
+                <div class="comp-g-title">Serveur &amp; Référencement</div>
+                <div class="comp-tags"><span class="comp-tag">SSH</span><span class="comp-tag">Debian Linux</span><span class="comp-tag">SEO</span><span class="comp-tag">BDD relationnelles</span></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="cv-sec">
+            <div class="sec-hdr"><span class="sec-ttl">Gestion de projet &amp; Méthodologies</span><div class="sec-line"></div></div>
+            <div class="comp-tags"><span class="comp-tag">Cahier des charges</span><span class="comp-tag">Analyse concurrentielle</span><span class="comp-tag">Méthode Agile</span><span class="comp-tag">Besoins utilisateurs</span><span class="comp-tag">Gestion de projet</span></div>
+          </div>
+
+          <div class="cv-sec">
+            <div class="sec-hdr"><span class="sec-ttl">Formation</span><div class="sec-line"></div></div>
+            <div class="edu-item">
+              <div><div class="edu-deg">Développeur Web &amp; Web Mobile (Bac+2)</div><div class="edu-sch">Formation diplômante – Reconversion professionnelle</div></div>
+              <div class="edu-yr">2023–2024</div>
+            </div>
+            <div class="edu-item">
+              <div><div class="edu-deg">Master 2 – Sociologie</div><div class="edu-sch">Formation initiale – Université</div></div>
+              <div class="edu-yr">Antérieur</div>
+            </div>
+          </div>
+        </main>
+      </div>
     </div>
   </div>
 
@@ -229,6 +439,7 @@ footer{
 <footer>
   <div class="foot-logo">Behou Blaise</div>
   <div class="foot-copy">© 2026 — Tous droits réservés</div>
+  <a href="#" class="foot-back">↑ Haut de page</a>
 </footer>
 
 <script>
@@ -237,7 +448,6 @@ document.addEventListener('keydown',e=>{
   const mod=e.ctrlKey||e.metaKey;
   if(mod&&e.key==='p'){e.preventDefault();alert('L\'impression de ce CV n\'est pas autorisée.');}
   if(mod&&(e.key==='s'||e.key==='S')){e.preventDefault();}
-  if(mod&&e.shiftKey&&e.key==='s'){e.preventDefault();}
 });
 window.onbeforeprint=()=>{document.body.style.display='none';setTimeout(()=>{document.body.style.display='';},100)};
 </script>
