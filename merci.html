@@ -5,8 +5,13 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Message reçu — Behou Blaise</title>
 <meta name="robots" content="noindex,nofollow">
+
+<!-- Favicon inline SVG (cohérent avec le portfolio) -->
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='4' fill='%2313121f'/><text x='5' y='24' font-size='20' font-family='serif' font-weight='900' fill='%23c9a84c'>B</text></svg>">
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@1,700&family=Rajdhani:wght@400;600;700&display=swap" rel="stylesheet">
+
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
@@ -14,6 +19,10 @@
   --gold:#c9a84c;--gold2:#e8c96a;
   --white:#f0ece4;--muted:#948f8a;
   --border:rgba(201,168,76,.28);
+  --green:#4ade80;
+
+  /* ⚠️ Mets ici l'URL exacte de ton portfolio déployé */
+  --portfolio-url: "https://behoublaise.netlify.app";
 }
 body{
   background:var(--bg);color:var(--white);
@@ -23,15 +32,22 @@ body{
   padding:2rem;
 }
 
-/* Géométrie déco légère */
+/* Géométrie déco */
 .geo{
   position:fixed;inset:0;pointer-events:none;overflow:hidden;opacity:.05;
 }
 .geo circle{fill:none;stroke:var(--gold)}
 
+/* Grain texture (cohérent avec le portfolio v3) */
+.grain{
+  position:fixed;inset:0;pointer-events:none;opacity:.02;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size:180px;
+}
+
 .card{
   background:var(--card);border:1px solid var(--border);
-  padding:3rem 2.5rem;max-width:460px;width:100%;text-align:center;
+  padding:3rem 2.5rem;max-width:480px;width:100%;text-align:center;
   position:relative;overflow:hidden;
   animation:cardIn .65s cubic-bezier(.22,1,.36,1) forwards;
 }
@@ -49,7 +65,7 @@ body{
 .pulse-ring{
   position:absolute;inset:-8px;border-radius:50%;
   border:1px solid rgba(201,168,76,.25);
-  animation:pulseOut 2.2s 1s infinite;
+  animation:pulseOut 2.4s 1s infinite;
 }
 .check-circle{
   width:68px;height:68px;border-radius:50%;
@@ -76,71 +92,119 @@ h1{
 }
 .desc strong{color:var(--white);font-weight:600}
 
-/* Compte à rebours */
+/* Badge disponibilité — cohérent avec le portfolio */
+.avail{
+  display:inline-flex;align-items:center;gap:.55rem;
+  background:rgba(74,222,128,.07);border:1px solid rgba(74,222,128,.2);
+  padding:.45rem .9rem;border-radius:100px;
+  margin-bottom:2rem;
+  animation:up .5s .7s both;
+}
+.avail-dot{
+  width:7px;height:7px;border-radius:50%;
+  background:var(--green);flex-shrink:0;
+  animation:pulse 2s infinite;
+}
+.avail-txt{
+  font-size:clamp(.62rem,1vw,.7rem);font-weight:700;
+  color:var(--green);letter-spacing:.06em;
+}
+
+/* Compte à rebours — 5s */
 .timer-wrap{
   display:flex;align-items:center;justify-content:center;gap:.5rem;
-  margin-bottom:1.5rem;
+  margin-bottom:1.25rem;
   animation:up .5s .75s both;
 }
 .timer-num{
   font-family:'Playfair Display',serif;
   font-size:2.2rem;font-weight:700;color:var(--gold);
   line-height:1;min-width:2ch;text-align:center;
+  transition:transform .2s;
 }
+.timer-num.tick{transform:scale(1.18)}
 .timer-lbl{
   font-size:.6rem;font-weight:700;letter-spacing:.18em;
-  text-transform:uppercase;color:rgba(148,143,138,.5);
+  text-transform:uppercase;color:rgba(148,143,138,.45);
 }
+
 .progress{
-  height:2px;background:rgba(201,168,76,.1);
+  height:2px;background:rgba(201,168,76,.08);
   margin-bottom:1.75rem;overflow:hidden;
   animation:up .5s .8s both;
 }
 .progress-bar{
   height:100%;background:linear-gradient(90deg,var(--gold),var(--gold2));
   transform-origin:left;
-  animation:shrink 7s 1.2s linear forwards;
+  /* ⚡ Synchronisé sur 5s comme le JS */
+  animation:shrink 5s 1.1s linear forwards;
 }
 
-.btn{
+/* Boutons */
+.btn-row{
+  display:flex;flex-direction:column;align-items:center;gap:.75rem;
+  animation:up .5s .85s both;
+}
+.btn-primary{
   display:inline-block;background:var(--gold);color:var(--bg);
   font-family:'Rajdhani',sans-serif;font-size:.78rem;font-weight:700;
   letter-spacing:.14em;text-transform:uppercase;
-  padding:.875rem 2rem;text-decoration:none;
+  padding:.875rem 2rem;text-decoration:none;width:100%;text-align:center;
   transition:background .3s,transform .2s;
-  animation:up .5s .85s both;
 }
-.btn:hover{background:var(--gold2);transform:translateY(-2px)}
+.btn-primary:hover{background:var(--gold2);transform:translateY(-2px)}
+
+/* Lien email discret */
+.email-link{
+  display:inline-flex;align-items:center;gap:.45rem;
+  font-size:.72rem;font-weight:600;letter-spacing:.06em;
+  color:var(--muted);text-decoration:none;
+  padding:.5rem .9rem;
+  border:1px solid var(--border);border-radius:100px;
+  transition:color .3s,border-color .3s;
+}
+.email-link svg{width:13px;height:13px;flex-shrink:0;color:var(--gold)}
+.email-link:hover{color:var(--gold);border-color:rgba(201,168,76,.45)}
 
 .footer-note{
-  margin-top:1.5rem;
-  font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;
-  color:rgba(148,143,138,.38);
+  margin-top:1.75rem;
+  font-size:.6rem;letter-spacing:.12em;text-transform:uppercase;
+  color:rgba(148,143,138,.35);
   animation:up .5s .95s both;
 }
 
-/* Keyframes */
+/* ── Keyframes ── */
 @keyframes cardIn{from{opacity:0;transform:translateY(22px) scale(.98)}to{opacity:1;transform:none}}
 @keyframes lineIn{from{opacity:0;transform:scaleX(0)}to{opacity:1;transform:scaleX(1)}}
 @keyframes ringIn{from{opacity:0;transform:scale(.65)}to{opacity:1;transform:scale(1)}}
 @keyframes checkDraw{to{stroke-dashoffset:0}}
-@keyframes pulseOut{0%{transform:scale(1);opacity:.38}100%{transform:scale(1.55);opacity:0}}
+@keyframes pulseOut{0%{transform:scale(1);opacity:.35}100%{transform:scale(1.6);opacity:0}}
 @keyframes shrink{from{transform:scaleX(1)}to{transform:scaleX(0)}}
 @keyframes up{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+@keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(74,222,128,.5)}70%{box-shadow:0 0 0 6px rgba(74,222,128,0)}}
+
+/* Responsive */
+@media(max-width:480px){
+  .card{padding:2rem 1.25rem}
+  .btn-primary{padding:.8rem 1.5rem}
+}
 </style>
 </head>
 <body>
 
-<!-- Géométrie déco -->
+<div class="grain"></div>
+
 <svg class="geo" viewBox="0 0 900 600" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
   <circle cx="800" cy="80" r="200" stroke-width=".8"/>
   <circle cx="800" cy="80" r="130" stroke-width=".5"/>
   <circle cx="100" cy="520" r="160" stroke-width=".6"/>
   <circle cx="100" cy="520" r="80" stroke-width=".4"/>
+  <circle cx="450" cy="300" r="300" stroke-width=".3"/>
 </svg>
 
 <div class="card">
-  <!-- Icône check -->
+
+  <!-- Check animé -->
   <div class="check-wrap">
     <div class="pulse-ring"></div>
     <div class="check-circle">
@@ -152,31 +216,66 @@ h1{
   </div>
 
   <h1>Message reçu !</h1>
+
   <p class="desc">
     Merci pour votre message.<br>
     Je vous répondrai <strong>sous 24h</strong> à l'adresse indiquée.
   </p>
 
-  <!-- Compte à rebours -->
+  <!-- Badge disponibilité -->
+  <div class="avail">
+    <div class="avail-dot"></div>
+    <span class="avail-txt">Disponible immédiatement — CDI, CDD ou Freelance</span>
+  </div>
+
+  <!-- Compte à rebours 5s -->
   <div class="timer-wrap">
     <div>
-      <div class="timer-num" id="cnt">7</div>
+      <div class="timer-num" id="cnt">5</div>
       <div class="timer-lbl">Redirection auto</div>
     </div>
   </div>
   <div class="progress"><div class="progress-bar"></div></div>
 
-  <a href="/" class="btn">← Retour au portfolio</a>
+  <!-- Boutons -->
+  <div class="btn-row">
+    <a href="https://behoublaise.netlify.app" class="btn-primary">← Retour au portfolio</a>
+
+    <a href="mailto:behouyapol5@gmail.com" class="email-link">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+           stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <rect x="2" y="4" width="20" height="16" rx="2"/>
+        <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
+      </svg>
+      behouyapol5@gmail.com
+    </a>
+  </div>
+
   <p class="footer-note">Behou Yapo Blaise · Développeur Web &amp; Mobile</p>
+
 </div>
 
 <script>
-let t=7;
-const el=document.getElementById('cnt');
-const iv=setInterval(()=>{
-  el.textContent=--t;
-  if(t<=0){clearInterval(iv);window.location.href='/';}
-},1000);
+  // ⚠️ Remplace cette URL par celle de ton portfolio déployé sur Netlify
+  const PORTFOLIO_URL = 'https://behoublaise.netlify.app';
+
+  let t = 5;
+  const el = document.getElementById('cnt');
+
+  const iv = setInterval(() => {
+    // Micro-animation au changement de chiffre
+    el.classList.remove('tick');
+    void el.offsetWidth; // reflow pour relancer l'animation
+    el.classList.add('tick');
+    setTimeout(() => el.classList.remove('tick'), 200);
+
+    el.textContent = --t;
+
+    if (t <= 0) {
+      clearInterval(iv);
+      window.location.href = PORTFOLIO_URL;
+    }
+  }, 1000);
 </script>
 </body>
 </html>
