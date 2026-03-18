@@ -4,10 +4,22 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Behou Blaise — Développeur Web & Mobile</title>
-<meta name="description" content="Portfolio de Behou Blaise - Développeur Web et Mobile · HTML5, CSS3, JavaScript, PHP, MySQL, Figma">
+<meta name="description" content="Portfolio de Behou Blaise - Développeur Web et Mobile · HTML5, CSS3, JavaScript, PHP, MySQL, Firebase, Figma">
 <meta name="author" content="Behou Yapo Blaise">
+
+<!-- Open Graph / LinkedIn -->
+<meta property="og:title" content="Behou Blaise — Développeur Web & Mobile">
+<meta property="og:description" content="Développeur Web Bac+2 · HTML5, CSS3, JS, PHP, Firebase, Figma · Disponible immédiatement">
+<meta property="og:url" content="https://behoublaise.netlify.app">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://behoublaise.netlify.app/og-image.png">
+
+<!-- Favicon inline SVG -->
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='4' fill='%2313121f'/><text x='5' y='24' font-size='20' font-family='serif' font-weight='900' fill='%23c9a84c'>B</text></svg>">
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Rajdhani:wght@300;400;600;700&display=swap" rel="stylesheet">
+
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 
@@ -21,35 +33,39 @@
   --border:rgba(201,168,76,.22);
   --border2:rgba(201,168,76,.45);
   --green:#4ade80;
+  --blue:#3b82f6;
 }
 
 html{scroll-behavior:smooth}
 body{background:var(--bg);color:var(--white);font-family:'Rajdhani',sans-serif;overflow-x:hidden}
+
+/* ── CURSOR ── */
+*, a, button { cursor: default; }
 
 /* ── NAVBAR ── */
 nav{
   position:fixed;top:0;left:0;right:0;z-index:100;
   display:flex;justify-content:space-between;align-items:center;
   padding:1rem 3rem;
-  background:rgba(19,18,31,.95);
-  backdrop-filter:blur(16px);
+  background:rgba(19,18,31,.96);
+  backdrop-filter:blur(20px);
   border-bottom:1px solid var(--border);
   transition:padding .3s;
 }
-nav.scrolled{padding:.7rem 3rem;border-bottom-color:rgba(201,168,76,.35)}
+nav.scrolled{padding:.65rem 3rem;border-bottom-color:rgba(201,168,76,.35)}
 .nav-logo{
   font-family:'Playfair Display',serif;
   font-size:1.3rem;font-weight:700;
   color:var(--white);text-decoration:none;
-  letter-spacing:.02em;
+  letter-spacing:.02em;flex-shrink:0;
 }
 .nav-logo span{color:var(--gold)}
-.nav-links{display:flex;gap:2rem;list-style:none}
+.nav-links{display:flex;gap:1.75rem;list-style:none}
 .nav-links a{
-  font-size:.78rem;font-weight:600;letter-spacing:.14em;
+  font-size:.73rem;font-weight:600;letter-spacing:.14em;
   text-transform:uppercase;color:var(--muted);
   text-decoration:none;transition:color .3s;
-  position:relative;
+  position:relative;white-space:nowrap;
 }
 .nav-links a::after{
   content:'';position:absolute;bottom:-4px;left:0;right:0;
@@ -59,11 +75,11 @@ nav.scrolled{padding:.7rem 3rem;border-bottom-color:rgba(201,168,76,.35)}
 .nav-links a:hover::after,.nav-links a.active::after{transform:scaleX(1)}
 .nav-links a:hover,.nav-links a.active{color:var(--gold)}
 .nav-cv{
-  font-size:.73rem;font-weight:700;letter-spacing:.12em;
+  font-size:.7rem;font-weight:700;letter-spacing:.12em;
   text-transform:uppercase;color:var(--bg);
-  background:var(--gold);padding:.5rem 1.25rem;
+  background:var(--gold);padding:.45rem 1.1rem;
   text-decoration:none;transition:background .3s,transform .2s;
-  white-space:nowrap;
+  white-space:nowrap;flex-shrink:0;
 }
 .nav-cv:hover{background:var(--gold2);transform:translateY(-1px)}
 
@@ -83,20 +99,20 @@ nav.scrolled{padding:.7rem 3rem;border-bottom-color:rgba(201,168,76,.35)}
 /* ── MOBILE MENU ── */
 .mobile-menu{
   position:fixed;inset:0;z-index:90;
-  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2rem;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1.75rem;
   background:rgba(19,18,31,.98);backdrop-filter:blur(24px);
   opacity:0;pointer-events:none;transition:opacity .35s;
 }
 .mobile-menu.open{opacity:1;pointer-events:all}
 .mobile-menu a{
   font-family:'Playfair Display',serif;
-  font-size:clamp(2rem,9vw,3.5rem);
-  color:rgba(240,236,228,.45);text-decoration:none;
+  font-size:clamp(2rem,9vw,3.2rem);
+  color:rgba(240,236,228,.4);text-decoration:none;
   transition:color .3s;letter-spacing:.02em;
 }
 .mobile-menu a:hover{color:var(--gold)}
 .mobile-menu .mob-cv{
-  font-size:.85rem;font-weight:700;letter-spacing:.14em;
+  font-size:.82rem;font-weight:700;letter-spacing:.14em;
   text-transform:uppercase;color:var(--bg);
   background:var(--gold);padding:.75rem 2rem;
   margin-top:.5rem;font-family:'Rajdhani',sans-serif;
@@ -111,17 +127,21 @@ nav.scrolled{padding:.7rem 3rem;border-bottom-color:rgba(201,168,76,.35)}
   padding:6rem 1.5rem 3rem;
   position:relative;overflow:hidden;
 }
-
-/* Géométrie déco — cercles SVG légers */
 .hero-geo{
-  position:absolute;inset:0;pointer-events:none;overflow:hidden;
-  opacity:.07;
+  position:absolute;inset:0;pointer-events:none;overflow:hidden;opacity:.06;
 }
 .hero-geo circle{fill:none;stroke:var(--gold)}
 
+/* Grain texture */
+.hero-grain{
+  position:absolute;inset:0;pointer-events:none;opacity:.025;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size:180px;
+}
+
 .hero-tag{
-  font-size:clamp(.63rem,.85vw,.73rem);
-  font-weight:700;letter-spacing:.24em;text-transform:uppercase;
+  font-size:clamp(.62rem,.84vw,.72rem);
+  font-weight:700;letter-spacing:.26em;text-transform:uppercase;
   color:var(--gold);margin-bottom:1.5rem;
   display:flex;align-items:center;gap:.75rem;justify-content:center;
   opacity:0;animation:up .7s .2s forwards;
@@ -129,8 +149,8 @@ nav.scrolled{padding:.7rem 3rem;border-bottom-color:rgba(201,168,76,.35)}
 .hero-tag::before,.hero-tag::after{content:'';width:28px;height:1px;background:var(--gold)}
 .hero-name{
   font-family:'Playfair Display',serif;
-  font-size:clamp(3rem,12vw,8rem);
-  font-weight:900;line-height:.9;letter-spacing:-.02em;
+  font-size:clamp(3.2rem,12vw,8.5rem);
+  font-weight:900;line-height:.88;letter-spacing:-.025em;
   color:var(--white);
   opacity:0;animation:up .8s .4s forwards;
 }
@@ -138,17 +158,14 @@ nav.scrolled{padding:.7rem 3rem;border-bottom-color:rgba(201,168,76,.35)}
 .hero-tw-wrap{
   min-height:2.5rem;display:flex;align-items:center;
   justify-content:center;gap:.3rem;
-  margin:1.5rem 0 1rem;
+  margin:1.6rem 0 1rem;
   opacity:0;animation:up .7s .7s forwards;
 }
-.hero-tw{
-  font-size:clamp(.95rem,2.5vw,1.4rem);font-weight:600;
-  color:var(--gold2);letter-spacing:.04em;
-}
+.hero-tw{font-size:clamp(.95rem,2.5vw,1.4rem);font-weight:600;color:var(--gold2);letter-spacing:.04em;}
 .tw-cur{width:2px;height:1.3rem;background:var(--gold);border-radius:2px;animation:blink .9s infinite}
 .hero-sub{
   font-size:clamp(.87rem,1.8vw,.98rem);font-weight:400;
-  color:var(--muted);max-width:500px;line-height:1.85;
+  color:var(--muted);max-width:480px;line-height:1.9;
   margin:0 auto;
   opacity:0;animation:up .7s .9s forwards;
 }
@@ -173,21 +190,19 @@ nav.scrolled{padding:.7rem 3rem;border-bottom-color:rgba(201,168,76,.35)}
   transition:border-color .3s,color .3s,transform .2s;
 }
 .btn-outline:hover{border-color:var(--gold);color:var(--gold);transform:translateY(-2px)}
-
-/* scroll indicator */
 .scroll-hint{
   position:absolute;bottom:2rem;left:50%;transform:translateX(-50%);
   display:flex;flex-direction:column;align-items:center;gap:6px;
   opacity:0;animation:up .7s 1.6s forwards;
 }
-.scroll-hint span{font-size:.58rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(148,143,138,.4)}
+.scroll-hint span{font-size:.56rem;letter-spacing:.22em;text-transform:uppercase;color:rgba(148,143,138,.35)}
 .scroll-line{width:1px;height:36px;background:linear-gradient(to bottom,rgba(201,168,76,.5),transparent);animation:scrollPulse 2.2s infinite}
 
 /* ── SECTIONS ── */
 .sec{padding:6rem 1.5rem;max-width:1020px;margin:0 auto}
 .sec-label{
-  font-size:clamp(.6rem,.82vw,.68rem);font-weight:700;
-  letter-spacing:.22em;text-transform:uppercase;color:var(--gold);
+  font-size:clamp(.58rem,.8vw,.66rem);font-weight:700;
+  letter-spacing:.24em;text-transform:uppercase;color:var(--gold);
   display:flex;align-items:center;gap:.75rem;margin-bottom:.6rem;
 }
 .sec-label::before{content:'';width:20px;height:1px;background:var(--gold)}
@@ -201,7 +216,40 @@ nav.scrolled{padding:.7rem 3rem;border-bottom-color:rgba(201,168,76,.35)}
 hr.divider{border:none;height:1px;background:linear-gradient(90deg,transparent,var(--border),transparent)}
 
 /* ── ABOUT ── */
-.about-grid{display:grid;grid-template-columns:1.2fr 1fr;gap:4rem;align-items:start}
+.about-grid{display:grid;grid-template-columns:1.3fr 1fr;gap:4rem;align-items:start}
+.about-left{display:flex;flex-direction:column;gap:0}
+
+/* Photo de profil */
+.about-photo-wrap{
+  display:flex;align-items:center;gap:1.5rem;
+  margin-bottom:1.75rem;
+  padding-bottom:1.75rem;
+  border-bottom:1px solid var(--border);
+}
+.about-photo{
+  width:80px;height:80px;border-radius:50%;flex-shrink:0;
+  border:2px solid var(--border2);
+  background:linear-gradient(135deg,#1c1a2e,#2a2640);
+  display:flex;align-items:center;justify-content:center;
+  position:relative;overflow:hidden;
+}
+.about-photo svg{width:44px;height:44px;color:var(--gold);opacity:.6}
+.about-photo-info{}
+.about-photo-name{
+  font-family:'Playfair Display',serif;
+  font-size:1.1rem;font-weight:700;color:var(--white);
+  line-height:1.2;
+}
+.about-photo-role{
+  font-size:.7rem;font-weight:600;letter-spacing:.12em;
+  text-transform:uppercase;color:var(--muted);margin-top:.2rem;
+}
+.about-photo-loc{
+  font-size:.72rem;color:var(--muted);margin-top:.3rem;
+  display:flex;align-items:center;gap:.35rem;
+}
+.about-photo-loc svg{width:12px;height:12px;color:var(--gold);flex-shrink:0}
+
 .about-text p{font-size:clamp(.84rem,1.45vw,.93rem);color:var(--muted);line-height:1.95;margin-bottom:1rem}
 .about-text p strong{color:var(--white);font-weight:600}
 .about-text p:first-child{font-size:clamp(.9rem,1.6vw,1.02rem);color:rgba(240,236,228,.82)}
@@ -231,7 +279,54 @@ hr.divider{border:none;height:1px;background:linear-gradient(90deg,transparent,v
   font-size:clamp(2rem,5vw,3rem);font-weight:700;
   color:var(--gold);display:block;line-height:1;
 }
-.kpi-lbl{font-size:clamp(.58rem,.88vw,.66rem);font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-top:.35rem}
+.kpi-lbl{font-size:clamp(.56rem,.86vw,.64rem);font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-top:.35rem}
+
+/* ── TIMELINE ── */
+.timeline-bg{background:#181628}
+.timeline-wrap{position:relative;padding-left:2rem}
+.timeline-wrap::before{
+  content:'';position:absolute;left:0;top:0;bottom:0;
+  width:1px;background:linear-gradient(to bottom,transparent,var(--gold),var(--gold),transparent);
+  opacity:.3;
+}
+.tl-item{
+  position:relative;padding:0 0 2.5rem 2rem;
+}
+.tl-item:last-child{padding-bottom:0}
+.tl-dot{
+  position:absolute;left:-5px;top:4px;
+  width:11px;height:11px;border-radius:50%;
+  background:var(--bg2);border:2px solid var(--gold);
+  transition:background .3s,transform .3s;
+}
+.tl-item:hover .tl-dot{background:var(--gold);transform:scale(1.3)}
+.tl-date{
+  font-size:.65rem;font-weight:700;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--gold);margin-bottom:.35rem;
+}
+.tl-title{
+  font-family:'Playfair Display',serif;
+  font-size:1.1rem;font-weight:700;color:var(--white);
+  margin-bottom:.2rem;line-height:1.2;
+}
+.tl-org{
+  font-size:.78rem;font-weight:600;letter-spacing:.06em;
+  color:var(--muted);margin-bottom:.5rem;
+  display:flex;align-items:center;gap:.4rem;
+}
+.tl-org-badge{
+  font-size:.56rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;
+  padding:.15rem .55rem;border-radius:100px;
+  background:rgba(201,168,76,.08);border:1px solid var(--border);
+  color:var(--gold);
+}
+.tl-desc{font-size:clamp(.8rem,1.3vw,.87rem);color:var(--muted);line-height:1.75}
+.tl-tags{display:flex;flex-wrap:wrap;gap:.35rem;margin-top:.65rem}
+.tl-tag{
+  font-size:.56rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--muted);padding:.18rem .55rem;border-radius:100px;
+  background:rgba(255,255,255,.03);border:1px solid var(--border);
+}
 
 /* ── SKILLS ── */
 .skills-bg{background:#181628}
@@ -249,12 +344,7 @@ hr.divider{border:none;height:1px;background:linear-gradient(90deg,transparent,v
 }
 .sk:hover{border-color:var(--gold);transform:translateY(-6px)}
 .sk:hover::before{transform:scaleX(1)}
-
-/* icônes SVG des catégories de compétences */
-.sk-icon{
-  display:block;width:36px;height:36px;margin-bottom:1rem;
-  color:var(--gold);opacity:.8;
-}
+.sk-icon{display:block;width:36px;height:36px;margin-bottom:1rem;color:var(--gold);opacity:.8;}
 .sk-title{
   font-family:'Playfair Display',serif;font-size:1.12rem;font-weight:700;
   color:var(--white);margin-bottom:1.1rem;padding-bottom:.75rem;
@@ -262,7 +352,7 @@ hr.divider{border:none;height:1px;background:linear-gradient(90deg,transparent,v
 }
 .sk-tags{display:flex;flex-wrap:wrap;gap:.4rem}
 .tag{
-  font-size:clamp(.58rem,.82vw,.66rem);font-weight:600;letter-spacing:.08em;
+  font-size:clamp(.56rem,.8vw,.64rem);font-weight:600;letter-spacing:.08em;
   text-transform:uppercase;padding:.25rem .7rem;border-radius:100px;
   background:rgba(201,168,76,.07);border:1px solid var(--border);
   color:var(--muted);transition:all .3s;
@@ -271,8 +361,97 @@ hr.divider{border:none;height:1px;background:linear-gradient(90deg,transparent,v
 .sk:hover .tag{border-color:rgba(201,168,76,.28);color:rgba(240,236,228,.78)}
 .sk:hover .tag.hot{color:var(--gold2);border-color:rgba(201,168,76,.6)}
 
+/* ── LANGUES ── */
+.lang-row{
+  display:flex;flex-wrap:wrap;gap:.75rem;
+  margin-top:2rem;padding-top:2rem;border-top:1px solid var(--border);
+}
+.lang-item{
+  display:flex;align-items:center;gap:.6rem;
+  background:rgba(255,255,255,.035);border:1px solid var(--border);
+  padding:.65rem 1.1rem;transition:border-color .3s;
+}
+.lang-item:hover{border-color:var(--gold)}
+.lang-flag{font-size:1.2rem}
+.lang-info{}
+.lang-name{font-size:.76rem;font-weight:700;letter-spacing:.08em;color:var(--white)}
+.lang-level{font-size:.6rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+
 /* ── PROJETS ── */
 .proj-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1.25rem}
+
+/* FEATURED */
+.proj-featured{
+  grid-column:1 / -1;
+  background:rgba(255,255,255,.03);
+  border:1px solid var(--border);
+  overflow:hidden;
+  transition:border-color .35s,transform .35s;
+}
+.proj-featured:hover{border-color:var(--gold);transform:translateY(-5px)}
+.proj-featured .proj-bar{height:2px;background:linear-gradient(90deg,var(--gold),var(--gold2),transparent);transform:scaleX(0);transform-origin:left;transition:transform .55s}
+.proj-featured:hover .proj-bar{transform:scaleX(1)}
+.featured-inner{display:grid;grid-template-columns:1.1fr 1fr;gap:0}
+
+.featured-mockup{
+  background:linear-gradient(135deg,#1140a8 0%,#1a56db 60%,#2563eb 100%);
+  padding:28px 28px 0;position:relative;overflow:hidden;
+}
+.featured-mockup::before{content:'';position:absolute;top:-50px;right:-50px;width:180px;height:180px;background:rgba(255,255,255,.05);border-radius:50%}
+.featured-mockup::after{content:'';position:absolute;bottom:10px;left:-30px;width:120px;height:120px;background:rgba(201,168,76,.08);border-radius:50%}
+.fm-screen{background:#f8fafc;border-radius:10px 10px 0 0;overflow:hidden;position:relative;z-index:1;box-shadow:0 -6px 24px rgba(0,0,0,.3)}
+.fm-bar{background:#1e293b;padding:8px 12px;display:flex;align-items:center;gap:6px}
+.fm-dot{width:8px;height:8px;border-radius:50%}
+.fm-dot-r{background:#ef4444}.fm-dot-y{background:#f59e0b}.fm-dot-g{background:#22c55e}
+.fm-url{flex:1;background:#334155;border-radius:3px;padding:3px 8px;font-size:9px;color:#94a3b8;font-family:monospace}
+.fm-content{padding:12px;background:#f8fafc}
+.fm-nav{background:#1a56db;border-radius:6px;padding:7px 12px;display:flex;align-items:center;justify-content:space-between;margin-bottom:10px}
+.fm-logo{font-family:'Playfair Display',serif;font-weight:900;color:white;font-size:12px}
+.fm-logo span{color:#fbbf24}
+.fm-navlinks{display:flex;gap:8px}
+.fm-navlink{font-size:8px;color:rgba(255,255,255,.65);font-weight:600}
+.fm-navlink.act{color:white}
+.fm-cards{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-bottom:8px}
+.fm-card{background:white;border-radius:6px;padding:8px;border:1px solid #e2e8f0}
+.fm-val{font-size:13px;font-weight:700;color:#1a56db;font-family:'Playfair Display',serif}
+.fm-lbl{font-size:7px;color:#64748b;margin-top:1px}
+.fm-fiche{background:white;border-radius:6px;padding:10px;border:1px solid #e2e8f0}
+.fm-fiche-hd{background:#1a56db;color:white;font-size:8px;font-weight:700;padding:5px 8px;border-radius:3px;margin-bottom:6px;display:flex;justify-content:space-between}
+.fm-row{display:flex;justify-content:space-between;font-size:7px;color:#475569;padding:2px 0;border-bottom:1px solid #f1f5f9}
+.fm-row.net{color:#1a56db;font-weight:700;font-size:8px;border-bottom:none;margin-top:3px}
+.fm-btns{display:flex;gap:4px;margin-top:8px}
+.fm-btn{flex:1;padding:4px;border-radius:4px;font-size:7px;font-weight:700;text-align:center;color:white}
+.fm-btn-b{background:#1a56db}.fm-btn-g{background:#059669}.fm-btn-p{background:#7c3aed}
+
+.featured-content{padding:2rem 2rem;display:flex;flex-direction:column;justify-content:center}
+.featured-num{
+  font-family:'Playfair Display',serif;font-size:4rem;font-weight:900;
+  color:rgba(201,168,76,.08);line-height:1;margin-bottom:.5rem;
+}
+.featured-badges{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:14px}
+.fb{font-size:10px;font-weight:700;padding:3px 10px;border-radius:20px;letter-spacing:.05em}
+.fb-green{background:rgba(74,222,128,.1);color:#4ade80;border:1px solid rgba(74,222,128,.25)}
+.fb-blue{background:rgba(201,168,76,.1);color:var(--gold);border:1px solid var(--border2)}
+.fb-violet{background:rgba(124,58,237,.15);color:#c4b5fd;border:1px solid rgba(124,58,237,.3)}
+.featured-title{font-family:'Playfair Display',serif;font-size:clamp(1.6rem,3vw,2.2rem);font-weight:900;color:var(--white);margin-bottom:.5rem;line-height:1.1}
+.featured-title span{color:var(--gold);font-style:italic}
+.featured-desc{font-size:clamp(.77rem,1.2vw,.85rem);color:var(--muted);line-height:1.75;margin-bottom:1.25rem}
+.featured-features{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:1.5rem}
+.ff{display:flex;align-items:flex-start;gap:8px;padding:8px 10px;background:rgba(255,255,255,.03);border:1px solid rgba(201,168,76,.1);border-radius:6px}
+.ff-icon{font-size:13px;flex-shrink:0;margin-top:1px}
+.ff-text{font-size:11px;color:rgba(240,236,228,.7);line-height:1.3}
+.ff-text strong{color:var(--white);display:block;font-size:11px}
+.featured-stack{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:1.5rem}
+.fs{font-size:10px;font-weight:600;padding:4px 10px;border-radius:6px;background:rgba(255,255,255,.04);border:1px solid var(--border);color:var(--muted);display:flex;align-items:center;gap:5px}
+.fs-dot{width:6px;height:6px;border-radius:50%;flex-shrink:0}
+.featured-liens{display:flex;gap:8px}
+.fl{display:inline-flex;align-items:center;gap:6px;padding:9px 18px;border-radius:6px;font-size:12px;font-weight:700;text-decoration:none;transition:all .2s;font-family:'Rajdhani',sans-serif;letter-spacing:.06em;text-transform:uppercase}
+.fl-live{background:var(--gold);color:var(--bg);flex:1;justify-content:center}
+.fl-live:hover{background:var(--gold2);transform:translateY(-2px)}
+.fl-gh{background:rgba(255,255,255,.06);color:var(--white);border:1px solid var(--border);flex:1;justify-content:center}
+.fl-gh:hover{background:rgba(255,255,255,.1);transform:translateY(-2px)}
+
+/* Projets standards */
 .proj{
   background:rgba(255,255,255,.03);border:1px solid var(--border);
   overflow:hidden;transition:border-color .35s,transform .35s;
@@ -281,31 +460,29 @@ hr.divider{border:none;height:1px;background:linear-gradient(90deg,transparent,v
 .proj-bar{height:2px;background:linear-gradient(90deg,var(--gold),var(--gold2),transparent);transform:scaleX(0);transform-origin:left;transition:transform .55s}
 .proj:hover .proj-bar{transform:scaleX(1)}
 .proj-head{padding:1.5rem 1.75rem 1rem;display:flex;justify-content:space-between;align-items:flex-start}
-.proj-num{
-  font-family:'Playfair Display',serif;font-size:3rem;font-weight:900;
-  color:rgba(201,168,76,.09);line-height:1;transition:color .3s;
-}
+.proj-num{font-family:'Playfair Display',serif;font-size:3rem;font-weight:900;color:rgba(201,168,76,.09);line-height:1;transition:color .3s}
 .proj:hover .proj-num{color:rgba(201,168,76,.22)}
-.proj-links{display:flex;gap:.5rem}
+.proj-links{display:flex;gap:.5rem;align-items:flex-start;flex-wrap:wrap;justify-content:flex-end}
 .proj-link{
-  font-size:.63rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;
+  font-size:.6rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;
   color:var(--muted);text-decoration:none;
   padding:.25rem .65rem;border:1px solid var(--border);border-radius:100px;
   transition:all .3s;
 }
 .proj-link:hover{color:var(--gold);border-color:var(--gold)}
+.proj-link.dead{opacity:.35;cursor:not-allowed;pointer-events:none}
 .proj-body{padding:0 1.75rem 1.75rem}
-.proj-title{
-  font-family:'Playfair Display',serif;font-size:1.28rem;font-weight:700;
-  color:var(--white);margin-bottom:.4rem;transition:color .3s;
-}
+.proj-title{font-family:'Playfair Display',serif;font-size:1.28rem;font-weight:700;color:var(--white);margin-bottom:.4rem;transition:color .3s}
 .proj:hover .proj-title{color:var(--gold)}
 .proj-desc{font-size:clamp(.77rem,1.25vw,.84rem);color:var(--muted);line-height:1.75;margin-bottom:1rem}
 .proj-pills{display:flex;flex-wrap:wrap;gap:.35rem}
-.pill{
-  font-size:.58rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;
-  color:var(--gold);background:rgba(201,168,76,.07);
-  border:1px solid var(--border2);padding:.2rem .6rem;border-radius:100px;
+.pill{font-size:.58rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);background:rgba(201,168,76,.07);border:1px solid var(--border2);padding:.2rem .6rem;border-radius:100px}
+
+/* Badge "bientôt en ligne" */
+.proj-soon{
+  font-size:.55rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--muted);padding:.22rem .6rem;border:1px dashed rgba(148,143,138,.3);border-radius:100px;
+  display:inline-block;margin-top:.5rem;
 }
 
 /* ── CONTACT ── */
@@ -319,14 +496,11 @@ hr.divider{border:none;height:1px;background:linear-gradient(90deg,transparent,v
   transition:color .3s;word-break:break-all;
 }
 .contact-email:hover{color:var(--gold2)}
-.contact-phone{
-  font-size:clamp(.84rem,1.5vw,.93rem);color:var(--muted);
-  margin-bottom:1.5rem;display:flex;align-items:center;gap:.6rem;
-}
+.contact-phone{font-size:clamp(.84rem,1.5vw,.93rem);color:var(--muted);margin-bottom:1.5rem;display:flex;align-items:center;gap:.6rem}
 .contact-phone svg{width:16px;height:16px;flex-shrink:0;color:var(--gold)}
 .soc-row{display:flex;flex-wrap:wrap;gap:.6rem}
 .soc{
-  font-size:.68rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;
+  font-size:.66rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;
   color:var(--muted);text-decoration:none;
   padding:.5rem 1.1rem;border:1px solid var(--border);border-radius:100px;
   transition:all .3s;
@@ -335,7 +509,7 @@ hr.divider{border:none;height:1px;background:linear-gradient(90deg,transparent,v
 
 /* FORM */
 .contact-form{display:flex;flex-direction:column;gap:.85rem}
-.field label{display:block;font-size:.66rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);margin-bottom:.4rem}
+.field label{display:block;font-size:.64rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);margin-bottom:.4rem}
 .field input,.field textarea{
   width:100%;background:rgba(255,255,255,.04);border:1px solid var(--border);
   color:var(--white);font-family:'Rajdhani',sans-serif;
@@ -345,7 +519,7 @@ hr.divider{border:none;height:1px;background:linear-gradient(90deg,transparent,v
   -webkit-appearance:none;
 }
 .field input:focus,.field textarea:focus{border-color:var(--gold);background:rgba(201,168,76,.04)}
-.field input::placeholder,.field textarea::placeholder{color:rgba(148,143,138,.5)}
+.field input::placeholder,.field textarea::placeholder{color:rgba(148,143,138,.45)}
 .field textarea{height:110px}
 .form-btn{
   width:100%;background:var(--gold);color:var(--bg);
@@ -353,15 +527,11 @@ hr.divider{border:none;height:1px;background:linear-gradient(90deg,transparent,v
   letter-spacing:.16em;text-transform:uppercase;
   padding:.9rem;border:none;cursor:pointer;
   transition:background .3s,transform .2s;
-  position:relative;overflow:hidden;
 }
 .form-btn:hover{background:var(--gold2);transform:translateY(-2px)}
 .form-btn:active{transform:translateY(0)}
 .form-btn.sending{opacity:.7;cursor:not-allowed}
-.form-msg{
-  font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;font-weight:700;
-  padding:.6rem .9rem;border-radius:3px;display:none;margin-top:.25rem;
-}
+.form-msg{font-size:.7rem;letter-spacing:.08em;text-transform:uppercase;font-weight:700;padding:.6rem .9rem;border-radius:3px;display:none;margin-top:.25rem}
 .form-msg.ok{display:block;background:rgba(74,222,128,.1);border:1px solid rgba(74,222,128,.3);color:var(--green)}
 .form-msg.err{display:block;background:rgba(248,113,113,.1);border:1px solid rgba(248,113,113,.3);color:#f87171}
 
@@ -372,16 +542,13 @@ footer{
   justify-content:space-between;align-items:center;
   flex-wrap:wrap;gap:.5rem;
 }
-.foot-logo{font-family:'Playfair Display',serif;font-size:1rem;color:rgba(240,236,228,.35)}
-.foot-copy{font-size:.66rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
-.foot-back{
-  font-size:.66rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;
-  color:var(--muted);text-decoration:none;transition:color .3s;
-}
+.foot-logo{font-family:'Playfair Display',serif;font-size:1rem;color:rgba(240,236,228,.3)}
+.foot-copy{font-size:.64rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.foot-back{font-size:.64rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);text-decoration:none;transition:color .3s}
 .foot-back:hover{color:var(--gold)}
 
 /* ── REVEAL ── */
-.rev{opacity:0;transform:translateY(30px);transition:opacity .8s ease,transform .8s ease}
+.rev{opacity:0;transform:translateY(28px);transition:opacity .75s ease,transform .75s ease}
 .rev.in{opacity:1;transform:none}
 .d1{transition-delay:.1s}.d2{transition-delay:.2s}.d3{transition-delay:.3s}.d4{transition-delay:.4s}
 
@@ -392,22 +559,28 @@ footer{
 @keyframes scrollPulse{0%,100%{opacity:.5;transform:scaleY(1)}50%{opacity:1;transform:scaleY(1.15)}}
 
 /* ── RESPONSIVE ── */
-@media(max-width:900px){
+@media(max-width:1000px){
   nav{padding:1rem 1.5rem}
   .nav-links,.nav-cv{display:none}
   .hamburger{display:flex}
   .about-grid,.contact-wrap{grid-template-columns:1fr;gap:2.5rem}
-  .skills-grid{grid-template-columns:1fr;gap:1rem}
+  .skills-grid{grid-template-columns:1fr 1fr;gap:1rem}
   .proj-grid{grid-template-columns:1fr;gap:1rem}
   .kpi-grid{gap:.75rem}
   .sec{padding:4.5rem 1.4rem}
   footer{padding:1.5rem 1.5rem}
+  .featured-inner{grid-template-columns:1fr}
+  .featured-mockup{padding:20px 20px 0}
+  .featured-features{grid-template-columns:1fr}
+}
+@media(max-width:600px){
+  .skills-grid{grid-template-columns:1fr}
 }
 @media(max-width:480px){
   nav{padding:.9rem 1rem}
   #hero{padding:5rem 1rem 2.5rem}
   .hero-name{font-size:clamp(2.8rem,18vw,4.5rem)}
-  .hero-tag{font-size:.56rem}
+  .hero-tag{font-size:.55rem}
   .hero-tag::before,.hero-tag::after{width:14px}
   .hero-btns{flex-direction:column;align-items:center}
   .btn-gold,.btn-outline{width:100%;max-width:280px;text-align:center}
@@ -421,6 +594,11 @@ footer{
   .contact-wrap{gap:2rem}
   footer{flex-direction:column;text-align:center}
   .scroll-hint{display:none}
+  .fm-cards{grid-template-columns:repeat(2,1fr)}
+  .featured-liens{flex-direction:column}
+  .timeline-wrap{padding-left:1.5rem}
+  .tl-item{padding-left:1.5rem}
+  .about-photo-wrap{flex-direction:column;align-items:flex-start;gap:1rem}
 }
 </style>
 </head>
@@ -429,10 +607,11 @@ footer{
 <!-- MOBILE MENU -->
 <div class="mobile-menu" id="mobileMenu">
   <a href="#about" onclick="closeMob()">À propos</a>
+  <a href="#parcours" onclick="closeMob()">Parcours</a>
   <a href="#skills" onclick="closeMob()">Compétences</a>
   <a href="#projects" onclick="closeMob()">Projets</a>
   <a href="#contact" onclick="closeMob()">Contact</a>
-  <a href="/cv.html" class="mob-cv" onclick="closeMob()">👁 Mon CV</a>
+  <a href="/cv.pdf" target="_blank" class="mob-cv" onclick="closeMob()">📄 Mon CV</a>
 </div>
 
 <!-- NAVBAR -->
@@ -440,11 +619,12 @@ footer{
   <a href="#hero" class="nav-logo">B.<span>Blaise</span></a>
   <ul class="nav-links">
     <li><a href="#about">À propos</a></li>
+    <li><a href="#parcours">Parcours</a></li>
     <li><a href="#skills">Compétences</a></li>
     <li><a href="#projects">Projets</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
-  <a href="/cv.html" class="nav-cv">👁 Mon CV</a>
+  <a href="/cv.pdf" target="_blank" class="nav-cv">📄 Mon CV</a>
   <button class="hamburger" id="ham" aria-label="Menu" onclick="toggleMob()">
     <span></span><span></span><span></span>
   </button>
@@ -452,7 +632,7 @@ footer{
 
 <!-- HERO -->
 <section id="hero">
-  <!-- Géométrie déco légère (CSS/SVG, pas de blur lourd) -->
+  <div class="hero-grain"></div>
   <svg class="hero-geo" viewBox="0 0 900 600" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
     <circle cx="780" cy="80" r="200" stroke-width=".8"/>
     <circle cx="780" cy="80" r="140" stroke-width=".5"/>
@@ -467,10 +647,10 @@ footer{
     <div class="hero-tw" id="tw"></div>
     <div class="tw-cur"></div>
   </div>
-  <p class="hero-sub">Développeur Web &amp; Web Mobile diplômé (Bac+2) — HTML5, CSS3, JavaScript, PHP, MySQL, Figma. Autonome, rigoureux et orienté résultats.</p>
+  <p class="hero-sub">Développeur Web &amp; Web Mobile diplômé (Bac+2) — HTML5, CSS3, JavaScript, PHP, MySQL, Firebase, Figma. Autonome, rigoureux et orienté résultats.</p>
   <div class="hero-btns">
     <a href="#projects" class="btn-gold">Voir mes projets →</a>
-    <a href="/cv.html" class="btn-outline">👁 Consulter mon CV</a>
+    <a href="/cv.pdf" target="_blank" class="btn-outline">📄 Consulter mon CV</a>
     <a href="#contact" class="btn-outline">Me contacter</a>
   </div>
   <div class="scroll-hint">
@@ -481,42 +661,124 @@ footer{
 
 <hr class="divider">
 
-<!-- ABOUT -->
+<!-- ══ À PROPOS ══ -->
 <section id="about">
   <div class="sec">
     <div class="sec-label rev">01 — À propos</div>
     <h2 class="sec-title rev">Passionné par le code<br>&amp; <em>l'expérience utilisateur</em></h2>
     <div class="about-grid">
-      <div class="about-text">
-        <p class="rev">Développeur Web &amp; Web Mobile diplômé (Bac+2), issu d'une reconversion depuis un Master 2 en Sociologie. Double compétence technique et analytique : conception, développement et maintenance d'applications web, avec une forte orientation UX/UI et gestion de projet.</p>
-        <p class="rev d1">Spécialisé en <strong>HTML5/CSS3</strong>, <strong>JavaScript</strong>, <strong>PHP/MySQL</strong> et <strong>Bootstrap</strong> — avec des compétences en <strong>Figma</strong>, conception UI/UX, WordPress et méthodes Agile.</p>
-        <p class="rev d2"><strong>Autonome, rigoureux et orienté résultats</strong> — je cherche à rejoindre une équipe dynamique où je pourrai mettre à profit mes compétences techniques et ma double culture sociologique et numérique. Permis B et véhicule.</p>
-        <div class="avail rev d3">
-          <div class="avail-dot"></div>
-          <span class="avail-txt">Disponible immédiatement — CDI, CDD ou Freelance</span>
+
+      <div class="about-left">
+        <!-- Identité visuelle -->
+        <div class="about-photo-wrap rev">
+          <div class="about-photo">
+            <!-- Remplacer ce SVG par une vraie photo : <img src="/photo.jpg" alt="Behou Blaise" style="width:100%;height:100%;object-fit:cover;border-radius:50%"> -->
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+              <circle cx="12" cy="7" r="4"/>
+            </svg>
+          </div>
+          <div class="about-photo-info">
+            <div class="about-photo-name">Behou Yapo Blaise</div>
+            <div class="about-photo-role">Développeur Web &amp; Mobile</div>
+            <div class="about-photo-loc">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              France — Permis B · Véhicule
+            </div>
+          </div>
+        </div>
+
+        <div class="about-text">
+          <p class="rev">Développeur Web &amp; Web Mobile diplômé (Bac+2), issu d'une reconversion depuis un Master 2 en Sociologie. Double compétence technique et analytique : conception, développement et maintenance d'applications web, avec une forte orientation UX/UI et gestion de projet.</p>
+          <p class="rev d1">Spécialisé en <strong>HTML5/CSS3</strong>, <strong>JavaScript</strong>, <strong>PHP/MySQL</strong> et <strong>Firebase</strong> — avec des compétences en <strong>Figma</strong>, conception UI/UX, WordPress et méthodes Agile.</p>
+          <p class="rev d2"><strong>Autonome, rigoureux et orienté résultats</strong> — je cherche à rejoindre une équipe dynamique où je pourrai mettre à profit mes compétences techniques et ma double culture sociologique et numérique.</p>
+          <div class="avail rev d3">
+            <div class="avail-dot"></div>
+            <span class="avail-txt">Disponible immédiatement — CDI, CDD ou Freelance</span>
+          </div>
         </div>
       </div>
+
       <div class="kpi-grid rev d1">
         <div class="kpi"><span class="kpi-val">3+</span><div class="kpi-lbl">Ans d'expérience</div></div>
-        <div class="kpi"><span class="kpi-val">4+</span><div class="kpi-lbl">Projets livrés</div></div>
+        <div class="kpi"><span class="kpi-val">5+</span><div class="kpi-lbl">Projets livrés</div></div>
         <div class="kpi"><span class="kpi-val">3+</span><div class="kpi-lbl">Clients satisfaits</div></div>
         <div class="kpi"><span class="kpi-val">Bac+2</span><div class="kpi-lbl">Diplôme obtenu</div></div>
       </div>
+
     </div>
   </div>
 </section>
 
 <hr class="divider">
 
-<!-- SKILLS -->
-<section id="skills" class="skills-bg">
+<!-- ══ PARCOURS ══ -->
+<section id="parcours" class="timeline-bg">
   <div class="sec">
-    <div class="sec-label rev">02 — Compétences</div>
+    <div class="sec-label rev">02 — Parcours</div>
+    <h2 class="sec-title rev">Mon <em>itinéraire</em></h2>
+
+    <div class="timeline-wrap">
+
+      <div class="tl-item rev">
+        <div class="tl-dot"></div>
+        <div class="tl-date">Jan. 2026</div>
+        <div class="tl-title">Certification SQL Avancé</div>
+        <div class="tl-org"><span>Udemy</span><span class="tl-org-badge">Certification</span></div>
+        <div class="tl-desc">Maîtrise de 101 requêtes SQL complexes — jointures, sous-requêtes, procédures stockées et optimisation de performances.</div>
+        <div class="tl-tags"><span class="tl-tag">SQL</span><span class="tl-tag">MySQL</span><span class="tl-tag">BDD</span></div>
+      </div>
+
+      <div class="tl-item rev d1">
+        <div class="tl-dot"></div>
+        <div class="tl-date">2025 — en cours</div>
+        <div class="tl-title">Développeur Freelance — MyPaie</div>
+        <div class="tl-org"><span>Projet personnel</span><span class="tl-org-badge">En production</span></div>
+        <div class="tl-desc">Conception et développement d'une application web full-stack de gestion de la paie — calcul des cotisations 2024, génération de bulletins PDF, envoi email via Resend, authentification Firebase.</div>
+        <div class="tl-tags"><span class="tl-tag">JavaScript</span><span class="tl-tag">Firebase</span><span class="tl-tag">Netlify</span><span class="tl-tag">jsPDF</span></div>
+      </div>
+
+      <div class="tl-item rev d2">
+        <div class="tl-dot"></div>
+        <div class="tl-date">2024</div>
+        <div class="tl-title">Stage Développeur Web</div>
+        <div class="tl-org"><span>KISI &amp; CO — Paris (Télétravail)</span><span class="tl-org-badge">Stage</span></div>
+        <div class="tl-desc">Création complète du site web de l'entreprise — analyse des besoins, maquettage Figma, développement via Webador, optimisation SEO et formation des administrateurs.</div>
+        <div class="tl-tags"><span class="tl-tag">Figma</span><span class="tl-tag">Webador</span><span class="tl-tag">SEO</span><span class="tl-tag">UI/UX</span></div>
+      </div>
+
+      <div class="tl-item rev d3">
+        <div class="tl-dot"></div>
+        <div class="tl-date">2023 – 2024</div>
+        <div class="tl-title">Diplôme Développeur Web &amp; Web Mobile</div>
+        <div class="tl-org"><span>Formation Bac+2</span><span class="tl-org-badge">Diplôme</span></div>
+        <div class="tl-desc">Formation intensive couvrant HTML5/CSS3, JavaScript, PHP, MySQL, Bootstrap, Git, Figma et méthodes Agile. Projets pratiques et stage en entreprise.</div>
+        <div class="tl-tags"><span class="tl-tag">HTML5/CSS3</span><span class="tl-tag">PHP</span><span class="tl-tag">MySQL</span><span class="tl-tag">Agile</span></div>
+      </div>
+
+      <div class="tl-item rev d4">
+        <div class="tl-dot"></div>
+        <div class="tl-date">Avant 2023</div>
+        <div class="tl-title">Master 2 — Sociologie</div>
+        <div class="tl-org"><span>Université</span><span class="tl-org-badge">Diplôme</span></div>
+        <div class="tl-desc">Double culture analytique et numérique — méthodes de recherche, analyse de données et conduite de projets. Reconversion vers le développement web pour allier rigueur académique et création digitale.</div>
+        <div class="tl-tags"><span class="tl-tag">Analyse</span><span class="tl-tag">Gestion de projet</span><span class="tl-tag">Recherche</span></div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- ══ COMPÉTENCES ══ -->
+<section id="skills">
+  <div class="sec">
+    <div class="sec-label rev">03 — Compétences</div>
     <h2 class="sec-title rev">Ma stack <em>technique</em></h2>
     <div class="skills-grid">
 
       <div class="sk rev">
-        <!-- Icône : code brackets -->
         <svg class="sk-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
           <polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/>
         </svg>
@@ -527,6 +789,7 @@ footer{
           <span class="tag hot">jQuery</span>
           <span class="tag hot">PHP</span>
           <span class="tag hot">MySQL</span>
+          <span class="tag hot">Firebase</span>
           <span class="tag">Bootstrap</span>
           <span class="tag">Git / GitHub</span>
           <span class="tag">SEO</span>
@@ -534,7 +797,6 @@ footer{
       </div>
 
       <div class="sk rev d1">
-        <!-- Icône : pen tool (design) -->
         <svg class="sk-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
           <path d="M12 19l7-7 3 3-7 7-3-3z"/><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"/>
           <path d="M2 2l7.586 7.586"/><circle cx="11" cy="11" r="2"/>
@@ -552,7 +814,6 @@ footer{
       </div>
 
       <div class="sk rev d2">
-        <!-- Icône : clipboard / gestion -->
         <svg class="sk-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
           <rect x="9" y="2" width="6" height="4" rx="1"/><path d="M9 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2h-3"/>
           <line x1="9" y1="12" x2="15" y2="12"/><line x1="9" y1="16" x2="13" y2="16"/>
@@ -569,23 +830,130 @@ footer{
       </div>
 
     </div>
+
+    <!-- Langues -->
+    <div class="lang-row rev d2">
+      <div class="lang-item">
+        <div class="lang-flag">🇫🇷</div>
+        <div class="lang-info">
+          <div class="lang-name">Français</div>
+          <div class="lang-level">Langue maternelle</div>
+        </div>
+      </div>
+      <div class="lang-item">
+        <div class="lang-flag">🇬🇧</div>
+        <div class="lang-info">
+          <div class="lang-name">Anglais</div>
+          <div class="lang-level">Professionnel</div>
+        </div>
+      </div>
+      <!-- Ajoute d'autres langues si pertinent -->
+    </div>
+
   </div>
 </section>
 
 <hr class="divider">
 
-<!-- PROJETS -->
-<section id="projects">
+<!-- ══ PROJETS ══ -->
+<section id="projects" style="background:#181628">
   <div class="sec">
-    <div class="sec-label rev">03 — Projets</div>
+    <div class="sec-label rev">04 — Projets</div>
     <h2 class="sec-title rev">Réalisations <em>récentes</em></h2>
     <div class="proj-grid">
 
+      <!-- ── MYPAIE — FEATURED ── -->
+      <div class="proj-featured rev">
+        <div class="proj-bar"></div>
+        <div class="featured-inner">
+
+          <div class="featured-mockup">
+            <div class="fm-screen">
+              <div class="fm-bar">
+                <div class="fm-dot fm-dot-r"></div>
+                <div class="fm-dot fm-dot-y"></div>
+                <div class="fm-dot fm-dot-g"></div>
+                <div class="fm-url">app-paie-client.netlify.app/pages/fiche-paie.html</div>
+              </div>
+              <div class="fm-content">
+                <div class="fm-nav">
+                  <div class="fm-logo">My<span>paie</span></div>
+                  <div class="fm-navlinks">
+                    <span class="fm-navlink">🏠</span>
+                    <span class="fm-navlink">👥</span>
+                    <span class="fm-navlink act">📄 Fiche</span>
+                  </div>
+                </div>
+                <div class="fm-cards">
+                  <div class="fm-card"><div class="fm-val">12</div><div class="fm-lbl">Employés</div></div>
+                  <div class="fm-card"><div class="fm-val">2 500€</div><div class="fm-lbl">Brut moy.</div></div>
+                  <div class="fm-card"><div class="fm-val">1 940€</div><div class="fm-lbl">Net moy.</div></div>
+                  <div class="fm-card"><div class="fm-val">Mar.26</div><div class="fm-lbl">Période</div></div>
+                </div>
+                <div class="fm-fiche">
+                  <div class="fm-fiche-hd"><span>BULLETIN — Mars 2026</span><span>Dupont Jean</span></div>
+                  <div class="fm-row"><span>Salaire de base</span><span>2 500,00 €</span></div>
+                  <div class="fm-row"><span>CSG / CRDS</span><span>— 234,50 €</span></div>
+                  <div class="fm-row"><span>SS Vieillesse</span><span>— 182,75 €</span></div>
+                  <div class="fm-row"><span>PAS (Impôt)</span><span>— 137,50 €</span></div>
+                  <div class="fm-row net"><span>💳 NET À PAYER</span><span>1 945,25 €</span></div>
+                  <div class="fm-btns">
+                    <div class="fm-btn fm-btn-g">💾 Sauver</div>
+                    <div class="fm-btn fm-btn-b">🖨️ Imprimer</div>
+                    <div class="fm-btn fm-btn-p">📧 Email</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="featured-content">
+            <div class="featured-num">00</div>
+            <div class="featured-badges">
+              <span class="fb fb-green">✅ En production</span>
+              <span class="fb fb-blue">Full-Stack</span>
+              <span class="fb fb-violet">Firebase</span>
+            </div>
+            <div class="featured-title">My<span>Paie</span></div>
+            <p class="featured-desc">Application web de gestion de la paie conforme au régime général France 2024. Calcul automatique des cotisations, génération de bulletins et envoi par email avec PDF joint.</p>
+            <div class="featured-features">
+              <div class="ff"><div class="ff-icon">🧮</div><div class="ff-text"><strong>Calcul automatique</strong>SS, CSG, CRDS, PAS 2024</div></div>
+              <div class="ff"><div class="ff-icon">📧</div><div class="ff-text"><strong>Email + PDF</strong>Envoi via Resend API</div></div>
+              <div class="ff"><div class="ff-icon">👥</div><div class="ff-text"><strong>Gestion employés</strong>CRUD Firestore temps réel</div></div>
+              <div class="ff"><div class="ff-icon">🔐</div><div class="ff-text"><strong>Auth sécurisée</strong>Firebase Authentication</div></div>
+            </div>
+            <div class="featured-stack">
+              <div class="fs"><div class="fs-dot" style="background:#f7df1e"></div>JavaScript</div>
+              <div class="fs"><div class="fs-dot" style="background:#ffca28"></div>Firebase</div>
+              <div class="fs"><div class="fs-dot" style="background:#00c7b7"></div>Netlify</div>
+              <div class="fs"><div class="fs-dot" style="background:#111"></div>Resend</div>
+              <div class="fs"><div class="fs-dot" style="background:#e34f26"></div>HTML5/CSS3</div>
+              <div class="fs"><div class="fs-dot" style="background:#e11d48"></div>jsPDF</div>
+            </div>
+            <div class="featured-liens">
+              <a href="https://app-paie-client.netlify.app" target="_blank" rel="noopener" class="fl fl-live">🌐 Voir le projet</a>
+              <a href="https://github.com/Blaise150/app-paie-client" target="_blank" rel="noopener" class="fl fl-gh">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+                GitHub
+              </a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Projet 01 : KISI & CO -->
       <div class="proj rev">
         <div class="proj-bar"></div>
         <div class="proj-head">
           <div class="proj-num">01</div>
-          <div class="proj-links"><a href="#" class="proj-link">Live ↗</a></div>
+          <div class="proj-links">
+            <!--
+              ⚠️ Remplace "#" par l'URL réelle du site KISI & CO si disponible.
+              Si le site n'est plus en ligne, retire ce lien.
+            -->
+            <span class="proj-soon">🔗 Lien à venir</span>
+          </div>
         </div>
         <div class="proj-body">
           <div class="proj-title">Site Web KISI &amp; CO</div>
@@ -594,11 +962,14 @@ footer{
         </div>
       </div>
 
+      <!-- Projet 02 : Portfolio -->
       <div class="proj rev d1">
         <div class="proj-bar"></div>
         <div class="proj-head">
           <div class="proj-num">02</div>
-          <div class="proj-links"><a href="https://github.com/Blaise150" target="_blank" rel="noopener" class="proj-link">GitHub ↗</a></div>
+          <div class="proj-links">
+            <a href="https://github.com/Blaise150" target="_blank" rel="noopener" class="proj-link">GitHub ↗</a>
+          </div>
         </div>
         <div class="proj-body">
           <div class="proj-title">Portfolio Développeur</div>
@@ -607,29 +978,27 @@ footer{
         </div>
       </div>
 
+      <!-- Projet 03 : App PHP/MySQL — donne un vrai nom et lien repo direct -->
       <div class="proj rev d2">
         <div class="proj-bar"></div>
         <div class="proj-head">
           <div class="proj-num">03</div>
-          <div class="proj-links"><a href="https://github.com/Blaise150" target="_blank" rel="noopener" class="proj-link">GitHub ↗</a></div>
+          <div class="proj-links">
+            <!--
+              ⚠️ Remplace l'URL par le lien direct vers CE repo spécifique sur GitHub.
+              Exemple : https://github.com/Blaise150/nom-du-repo
+            -->
+            <a href="https://github.com/Blaise150" target="_blank" rel="noopener" class="proj-link">GitHub ↗</a>
+          </div>
         </div>
         <div class="proj-body">
+          <!--
+            ⚠️ Donne un vrai nom à cette application.
+            Ex : "GestiStock", "MonBlog PHP", "AppCRM" etc.
+          -->
           <div class="proj-title">Application PHP / MySQL</div>
-          <p class="proj-desc">Développement d'une application web dynamique avec gestion de base de données, authentification utilisateur, interface responsive et requêtes SQL optimisées.</p>
+          <p class="proj-desc">Application web dynamique avec authentification sécurisée, gestion CRUD de base de données, interface responsive Bootstrap et requêtes SQL optimisées.</p>
           <div class="proj-pills"><span class="pill">PHP</span><span class="pill">MySQL</span><span class="pill">Bootstrap</span><span class="pill">JavaScript</span></div>
-        </div>
-      </div>
-
-      <div class="proj rev d3">
-        <div class="proj-bar"></div>
-        <div class="proj-head">
-          <div class="proj-num">04</div>
-          <div class="proj-links"><a href="#" class="proj-link">Certificat ↗</a></div>
-        </div>
-        <div class="proj-body">
-          <div class="proj-title">Certification SQL Avancé</div>
-          <p class="proj-desc">Maîtrise de 101 requêtes SQL complexes — jointures, sous-requêtes, procédures stockées, optimisation de performances. Certification Udemy obtenue janvier 2026.</p>
-          <div class="proj-pills"><span class="pill">SQL</span><span class="pill">MySQL</span><span class="pill">BDD</span><span class="pill">Udemy</span></div>
         </div>
       </div>
 
@@ -639,14 +1008,13 @@ footer{
 
 <hr class="divider">
 
-<!-- CONTACT -->
+<!-- ══ CONTACT ══ -->
 <section id="contact" class="contact-bg">
   <div class="sec">
     <div class="contact-wrap">
 
-      <!-- Infos -->
       <div>
-        <div class="sec-label rev">04 — Contact</div>
+        <div class="sec-label rev">05 — Contact</div>
         <h2 class="sec-title rev" style="margin-bottom:.75rem">Recrutons<br><em>ensemble !</em></h2>
         <p class="rev" style="font-size:clamp(.82rem,1.4vw,.9rem);color:var(--muted);line-height:1.85;margin-bottom:0">
           Développeur Web &amp; Web Mobile diplômé Bac+2, disponible immédiatement pour un CDI, CDD ou mission freelance. Permis B et véhicule.
@@ -662,29 +1030,24 @@ footer{
           <a href="mailto:behouyapol5@gmail.com" class="soc">Email</a>
           <a href="https://github.com/Blaise150/" target="_blank" rel="noopener" class="soc">GitHub</a>
           <a href="https://www.linkedin.com/in/yapo-blaise-behou-597717287" target="_blank" rel="noopener" class="soc">LinkedIn</a>
-          <a href="/cv.html" class="soc">👁 CV</a>
+          <a href="/cv.pdf" target="_blank" class="soc">📄 CV PDF</a>
         </div>
       </div>
 
-      <!-- Formulaire -->
       <form class="contact-form rev d1" name="contact" method="POST" data-netlify="true" action="/merci.html" novalidate id="contactForm">
         <input type="hidden" name="form-name" value="contact">
-
         <div class="field">
           <label for="f-name">Votre nom</label>
           <input type="text" id="f-name" name="name" placeholder="" autocomplete="name" required>
         </div>
-
         <div class="field">
           <label for="f-email">Votre email</label>
           <input type="email" id="f-email" name="email" placeholder="" autocomplete="email" required>
         </div>
-
         <div class="field">
           <label for="f-msg">Message</label>
           <textarea id="f-msg" name="message" placeholder="Décrivez le poste ou votre projet..." required></textarea>
         </div>
-
         <button type="submit" class="form-btn" id="formBtn">Envoyer le message →</button>
         <div class="form-msg" id="formMsg"></div>
       </form>
@@ -715,42 +1078,37 @@ document.addEventListener('keydown',e=>{if(e.key==='Escape')closeMob()});
 
 // ── NAV SCROLL SHRINK
 const navEl=document.getElementById('nav');
-window.addEventListener('scroll',()=>{
-  navEl.classList.toggle('scrolled',window.scrollY>60);
-});
+window.addEventListener('scroll',()=>{navEl.classList.toggle('scrolled',window.scrollY>60);},{passive:true});
 
 // ── TYPEWRITER
-const phrases=['HTML5 / CSS3','JavaScript & jQuery','PHP & MySQL Developer','Figma & UI/UX Design','Disponible immédiatement 🚀'];
+const phrases=['HTML5 / CSS3','JavaScript & jQuery','PHP & MySQL Developer','Firebase & Firestore 🔥','Figma & UI/UX Design','Disponible immédiatement 🚀'];
 let pi=0,ci=0,del=false,tw=document.getElementById('tw');
 (function type(){
   const p=phrases[pi];
-  if(!del){tw.textContent=p.slice(0,++ci);if(ci===p.length){del=true;setTimeout(type,2000);return}}
+  if(!del){tw.textContent=p.slice(0,++ci);if(ci===p.length){del=true;setTimeout(type,2200);return}}
   else{tw.textContent=p.slice(0,--ci);if(ci===0){del=false;pi=(pi+1)%phrases.length}}
-  setTimeout(type,del?45:80);
+  setTimeout(type,del?42:78);
 })();
 
 // ── SCROLL REVEAL
 const io=new IntersectionObserver(e=>{
   e.forEach(x=>{if(x.isIntersecting){x.target.classList.add('in');io.unobserve(x.target)}});
-},{threshold:.07});
+},{threshold:.06});
 document.querySelectorAll('.rev').forEach(el=>io.observe(el));
 
-// ── NAV ACTIVE LINK
+// ── NAV ACTIVE LINK (inclut #parcours)
 const sections=document.querySelectorAll('section[id]');
 const navLinks=document.querySelectorAll('.nav-links a');
 window.addEventListener('scroll',()=>{
   let cur='';
   sections.forEach(s=>{if(window.scrollY>=s.offsetTop-180)cur=s.id});
-  navLinks.forEach(a=>{
-    a.classList.toggle('active',a.getAttribute('href')==='#'+cur);
-  });
+  navLinks.forEach(a=>{a.classList.toggle('active',a.getAttribute('href')==='#'+cur);});
 },{passive:true});
 
-// ── CONTACT FORM (Netlify + validation)
+// ── CONTACT FORM (Netlify)
 const form=document.getElementById('contactForm');
 const btn=document.getElementById('formBtn');
 const msg=document.getElementById('formMsg');
-
 if(form){
   form.addEventListener('submit',async e=>{
     e.preventDefault();
@@ -758,29 +1116,21 @@ if(form){
     const email=form.querySelector('[name="email"]').value.trim();
     const message=form.querySelector('[name="message"]').value.trim();
     const emailOk=/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-
     if(!name||!email||!message||!emailOk){
       msg.textContent=!emailOk?'Veuillez saisir un email valide.':'Veuillez remplir tous les champs.';
-      msg.className='form-msg err';
-      return;
+      msg.className='form-msg err';return;
     }
-
-    btn.classList.add('sending');
-    btn.textContent='Envoi en cours…';
-    msg.className='form-msg';
-
+    btn.classList.add('sending');btn.textContent='Envoi en cours…';msg.className='form-msg';
     try{
       const data=new FormData(form);
       await fetch('/',{method:'POST',headers:{'Content-Type':'application/x-www-form-urlencoded'},body:new URLSearchParams(data).toString()});
       msg.textContent='Message envoyé ! Je vous répondrai très rapidement.';
-      msg.className='form-msg ok';
-      form.reset();
+      msg.className='form-msg ok';form.reset();
     }catch{
       msg.textContent='Une erreur est survenue. Contactez-moi directement par email.';
       msg.className='form-msg err';
     }finally{
-      btn.classList.remove('sending');
-      btn.textContent='Envoyer le message →';
+      btn.classList.remove('sending');btn.textContent='Envoyer le message →';
     }
   });
 }
